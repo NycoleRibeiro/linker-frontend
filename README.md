@@ -5,11 +5,14 @@
 
 <h2>Screenshots</h2>
 <p><em>*Será atualizado ao longo do desenvolvimento</em></p>
-<img src="assets/img/splash.png" width="200">
+<p>
+    <img src="assets/img/prints/telaCarregamento.jpg" width="200">
+    <img src="assets/img/prints/escolherUsuario.jpg" width="200">
+</p>
 
 <h2>Sobre o projeto</h2>
 <p>Este projeto esta sendo desenvolvido como trabalho da disciplina Projeto e Desenvolvimento de Sistemas 2 da Univerdade Federal de Rio Grande.
-A ideia deste projeto é desenvolver um clone do aplicativo Tinder com o objetivo de conectar desenvolvedores a empresas, e assim, facilitar para as empresas no processo de seleção para entrevistas de emprego, assim como para os desenvolvedores, que poderão buscar novas oportunidades de emprego em um ambiente mais interativo. 
+A ideia deste projeto é desenvolver um clone do aplicativo Tinder com o objetivo de conectar desenvolvedores a empresas, e assim, facilitar para as empresas no processo de seleção para entrevistas de emprego, assim como para os desenvolvedores, que poderão buscar novas oportunidades de emprego em um ambiente mais interativo.
 </p>
 
 <h2>Usuários | Público Alvo</h2>
