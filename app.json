@@ -1,14 +1,14 @@
 {
   "expo": {
-    "name": "linker",
-    "slug": "linker",
+    "name": "Linker",
+    "slug": "Linker",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/img/iconColor.png",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/img/splash.png",
-      "resizeMode": "contain",
+      "resizeMode": "cover",
       "backgroundColor": "#ffffff"
     },
     "updates": {
