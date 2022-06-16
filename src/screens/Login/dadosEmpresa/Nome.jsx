@@ -32,7 +32,7 @@ function Nome({navigation}) {
 
                 <TextInput
                     style={style.input}
-                    placeholder="Nome e Sobrenome"
+                    placeholder="Nome Fantasia"
                     placeholderTextColor="#A1A1AA"
                     selectionColor="#f4f4f5"
                     keyboardType="default"
