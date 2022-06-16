@@ -40,7 +40,7 @@ function Sobre({navigation}) {
                     alignItems: 'center',
                     marginRight: 40,
                     marginLeft: 30,
-                    marginTop: "10%",
+                    marginTop: "25%",
                     }}>
                     <TextInput
                         style={style.inputArea}
