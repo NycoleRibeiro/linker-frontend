@@ -23,16 +23,16 @@ export default ContinuarButton;
 
 const css = StyleSheet.create({
     container: {
-        position: 'absolute',
+        position: 'relative',
         width: '100%',
-        height: '100%',
+        bottom: 0,
         alignItems: 'center',
-        justifyContent: 'flex-start',
     },
     continuarButton: {
         width: '90%',
         alignItems: 'center',
-        marginTop: "165%",
+        marginTop: 20,
+        marginBottom: 20,
         paddingVertical: 15,
         borderRadius: 60,
         backgroundColor: '#27272A',
