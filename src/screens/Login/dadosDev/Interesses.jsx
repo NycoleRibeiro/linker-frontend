@@ -1,6 +1,7 @@
 import React from 'react';
 import { View,
-    Text, }
+        Text,
+        ScrollView, }
 from 'react-native';
 
 import { css } from './Css.js';
@@ -10,10 +11,12 @@ function Interesses({navigation}) {
 
         return (
             <View style={css.container}>
-                <Text style={css.h1center}>
-                    Selecione as áreas {'\n'}
-                    de seu interesse
-                </Text>
+                <ScrollView>
+                    <Text style={css.h1center}>
+                        Selecione as áreas {'\n'}
+                        de seu interesse
+                    </Text>
+                </ScrollView>
                 <ContinuarButton
                     name="Ver Vagas"
                     onPress={() => navigation.reset({
