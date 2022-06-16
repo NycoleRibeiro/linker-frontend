@@ -43,7 +43,7 @@ function Sobre({navigation}) {
                     alignItems: 'center',
                     marginRight: 40,
                     marginLeft: 30,
-                    marginTop: "10%",
+                    marginTop: "25%",
                     }}>
                     <TextInput
                         style={style.inputArea}
@@ -83,6 +83,7 @@ function Sobre({navigation}) {
                         selectionColor="#f4f4f5"
                         keyboardType="default"
                         autoCorrect={false}
+                        autoCapitalize="none"
                         maxLength={30}
                         onChangeText={(text) => {
                             setLinkedinUser(text);
@@ -110,6 +111,7 @@ function Sobre({navigation}) {
                         placeholderTextColor="#A1A1AA"
                         selectionColor="#f4f4f5"
                         keyboardType="default"
+                        autoCapitalize="none"
                         autoCorrect={false}
                         maxLength={30}
                         onChangeText={(text) => {
