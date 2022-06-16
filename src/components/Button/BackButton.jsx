@@ -11,7 +11,7 @@ function BackButton(props) {
             <MaterialIcons
                 name="keyboard-arrow-left"
                 size={50}
-                color="white" />
+                color="#3f3f46" />
         </TouchableHighlight>
 
     );
@@ -22,6 +22,6 @@ function BackButton(props) {
   const css = StyleSheet.create({
     backButton: {
         position: 'absolute',
-        top: '3%',
+        top: 10,
     },
   });
