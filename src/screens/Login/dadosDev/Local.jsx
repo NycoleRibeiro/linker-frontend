@@ -116,30 +116,3 @@ function Local({navigation}) {
 }
 
 export default Local;
-
-const pickerSelectStyles = StyleSheet.create({
-    inputIOS: {
-        marginLeft: 40,
-        marginRight: 40,
-        marginTop: "25%",
-        backgroundColor: '#1c1c20',
-        fontSize: 16,
-        paddingVertical: 12,
-        paddingHorizontal: 10,
-        borderRadius: 4,
-        color: 'black',
-        paddingRight: 30, // to ensure the text is never behind the icon
-    },
-    inputAndroid: {
-        marginLeft: 40,
-        marginRight: 40,
-        marginTop: "25%",
-        backgroundColor: '#1c1c20',
-        fontSize: 16,
-        paddingHorizontal: 10,
-        paddingVertical: 8,
-        borderRadius: 8,
-        color: 'white',
-        paddingRight: 30, // to ensure the text is never behind the icon
-    },
-  });
