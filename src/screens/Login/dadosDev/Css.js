@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import { RFPercentage } from "react-native-responsive-fontsize";
 
 const css = StyleSheet.create({
     container: {
@@ -8,7 +9,7 @@ const css = StyleSheet.create({
         textColor: '#fff',
     },
     h1: {
-        fontSize: 40,
+        fontSize: RFPercentage(5.3),
         color: '#fff',
         fontFamily: 'Inter_600SemiBold',
         marginTop: 80,
