@@ -9,14 +9,21 @@ import { StyleSheet } from "react-native";
 import { css } from './Css.js';
 import ContinuarButton from '../../../components/Button/ContinuarButton';
 import ProgressBar from '../../../components/Input/ProgressBar';
-
+import ErrorMessage from '../../../components/ErrorMessage';
 
 function Nome({navigation}) {
     const [nome, setNome] = React.useState("");
+    const [errorMessage, setErrorMessage] = useState(false);
 
-    function handleNome(text) {
-        console.log("Nome:",nome);
-        navigation.navigate('Numero')
+    function handleNome() {
+        if (nome) {
+            console.log("Nome:",nome);
+            navigation.navigate('Numero')
+        } else {
+            // Se o usuário não preencheu o campo, mostra o ErrorMessage
+            setErrorMessage(true);
+        }
+
     }
 
     return (
@@ -43,9 +50,12 @@ function Nome({navigation}) {
                     }}
                 />
             </ScrollView>
-            <ContinuarButton
-                onPress={handleNome}
-                />
+
+            {/* Error message, só aparece se o usuário tentar continuar sem os campos obrigatórios */}
+            {errorMessage &&
+            <ErrorMessage message="Digite seu nome para continuar"/>}
+
+            <ContinuarButton onPress={handleNome}/>
         </View>
     );
 }
