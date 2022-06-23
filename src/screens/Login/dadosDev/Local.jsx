@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { View,
         Text,
-        ScrollView, }
+        ScrollView,
+        TextInput, }
 from 'react-native';
 import { StyleSheet } from "react-native";
 
@@ -9,104 +10,71 @@ import { css } from './Css.js';
 import ContinuarButton from '../../../components/Button/ContinuarButton';
 import ProgressBar from '../../../components/Input/ProgressBar';
 import BackButton from '../../../components/Button/BackButton';
-import { Picker } from '@react-native-picker/picker'
-import { Cidades, Estados } from '../../../../assets/cidades-estados'
+import ErrorMessage from '../../../components/ErrorMessage';
 
 function Local({navigation}) {
-    const states = Estados();
-    const [selectedState, setSelectedState] = useState('');
+    const [state, setState] = useState('');
+    const [city, setCity] = React.useState("");
 
-    const cities = Cidades();
-    const [selectedCity, setSelectedCity] = useState('');
-
-    var citiesByState = [];
-    cities.map(city => {
-        if (city.estado === selectedState) {
-            citiesByState = city.cidades;
-        }})
+    const [errorMessage, setErrorMessage] = useState(false);
 
     function handleLocal(text) {
-        console.log("Localização:", selectedCity, "-", selectedState);
-        navigation.reset({
-            index: 0,
-            routes: [{
-                name: 'Interesses'
-            }]
-        })
+        if (state && city) {
+            // Retorna a localização e vai para a próxima tela
+            console.log("Localização:", city, "-", state);
+            navigation.reset({
+                index: 0,
+                routes: [{
+                    name: 'Interesses'
+                }]
+            })
+        }
+        else {
+            // Se o usuário não preencheu os campos, mostra o ErrorMessage
+            setErrorMessage(true);
+        }
     }
 
     return (
         <View style={css.container}>
             <ProgressBar percent="100%"/>
-                <ScrollView>
+            <ScrollView>
                 <BackButton voltar={() => navigation.goBack()}/>
                 <Text style={css.h1}>
                     Minha {'\n'}
                     Localização
                 </Text>
-                <Picker
-                style={{
-                    marginLeft: 40,
-                    marginRight: 40,
-                    marginTop: "25%",
-                    backgroundColor: '#1c1c20',
-                    color: '#fff',
-                }}
-                mode="dropdown"
-                dropdownIconColor="#fff"
-                selectedValue={selectedState}
-                onValueChange={(itemValue) => setSelectedState(itemValue)}
-                >
-                    <Picker.Item
-                        label="Selecione seu estado"
-                        value=""
-                        style={{
-                            backgroundColor: '#1c1c20',
-                            color: '#fff',
-                        }} />
-                    {states.map(state => (
-                        <Picker.Item
-                        key={state.value}
-                        label={state.label}
-                        value={state.value}
-                        style={{
-                            backgroundColor: '#1c1c20',
-                            color: '#fff',
-                        }} />
-                    ))}
-                </Picker>
-                <Picker
-                style={{
-                    marginLeft: 40,
-                    marginRight: 40,
-                    marginTop: 10,
-                    backgroundColor: '#1c1c20',
-                    color: '#fff',
-                }}
-                mode="dropdown"
-                dropdownIconColor="#fff"
-                selectedValue={selectedCity}
-                onValueChange={(itemValue) => setSelectedCity(itemValue)}
-                >
-                    <Picker.Item
-                        label="Selecione sua cidade"
-                        value=""
-                        style={{
-                            backgroundColor: '#1c1c20',
-                            color: '#fff',
-                        }} />
-                    {citiesByState.map(city => (
-                        <Picker.Item
-                        key={city}
-                        label={city}
-                        value={city}
-                        style={{
-                            backgroundColor: '#1c1c20',
-                            color: '#fff',
-                        }} />
-                    ))}
-                </Picker>
+
+                <View style={{marginTop: "30%"}}>
+                    <TextInput
+                        style={style.input}
+                        placeholder="Estado"
+                        placeholderTextColor="#A1A1AA"
+                        selectionColor="#f4f4f5"
+                        keyboardType="default"
+                        autoCapitalize="words"
+                        onChangeText={(text) => {
+                            setState(text);
+                        }}
+                    />
+                    <TextInput
+                        style={style.input}
+                        placeholder="Cidade"
+                        placeholderTextColor="#A1A1AA"
+                        selectionColor="#f4f4f5"
+                        keyboardType="default"
+                        autoCapitalize="words"
+                        onChangeText={(text) => {
+                            setCity(text);
+                        }}
+                    />
+                </View>
             </ScrollView>
+
+            {/* Error message, só aparece se o usuário tentar continuar sem foto */}
+            {errorMessage &&
+            <ErrorMessage message="Você precisa escrever sua cidade e estado"/>}
+
             <ContinuarButton
                 name="CONCLUIR"
                 onPress={handleLocal}
@@ -116,3 +84,21 @@ function Local({navigation}) {
 }
 
 export default Local;
+
+const style = StyleSheet.create({
+    input: {
+        width: '80%',
+        borderWidth: 1,
+        paddingLeft: 5,
+        marginRight: 40,
+        marginLeft: 40,
+        marginBottom: 50,
+        borderBottomColor: '#FD2B7A',
+        borderTopColor: '#18181b',
+        borderLeftColor: '#18181b',
+        borderRightColor: '#18181b',
+        fontFamily: 'Inter_400Regular',
+        fontSize: 20,
+        color: '#f4f4f5',
+      },
+});
