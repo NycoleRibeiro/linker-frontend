@@ -9,15 +9,22 @@ import ContinuarButton from '../../../components/Button/ContinuarButton';
 import ProgressBar from '../../../components/Input/ProgressBar';
 import BackButton from '../../../components/Button/BackButton';
 import PhoneInput from "react-native-phone-number-input";
+import ErrorMessage from '../../../components/ErrorMessage';
 
 
 function Numero({navigation}) {
     const [value, setValue] = useState("");
     const [formattedValue, setFormattedValue] = useState("");
+    const [errorMessage, setErrorMessage] = useState(false);
 
     function handleNumber(text) {
-        console.log("Celular:", formattedValue);
-        navigation.navigate('Fotos')
+        if (formattedValue && value) {
+            console.log("Celular:", formattedValue);
+            navigation.navigate('Fotos')
+        } else {
+            // Se o usuário não preencheu o campo, mostra o ErrorMessage
+            setErrorMessage(true);
+        }
     }
 
     return (
@@ -73,6 +80,11 @@ function Numero({navigation}) {
                 }}
                 />
             </ScrollView>
+
+            {/* Error message, só aparece se o usuário tentar continuar sem os campos obrigatórios */}
+            {errorMessage &&
+            <ErrorMessage message="Digite um número para continuar"/>}
+
             <ContinuarButton
                 onPress={handleNumber}
             />
@@ -81,3 +93,4 @@ function Numero({navigation}) {
 }
 
 export default Numero;
+
