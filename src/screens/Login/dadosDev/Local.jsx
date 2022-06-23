@@ -71,7 +71,7 @@ function Local({navigation}) {
                 </View>
             </ScrollView>
 
-            {/* Error message, só aparece se o usuário tentar continuar sem foto */}
+            {/* Error message, só aparece se o usuário tentar continuar sem os campos obrigatórios */}
             {errorMessage &&
             <ErrorMessage message="Você precisa escrever sua cidade e estado"/>}
 
