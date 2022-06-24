@@ -8,6 +8,7 @@
 <p>
     <img src="assets/img/prints/telaCarregamento.jpg" width="200">
     <img src="assets/img/prints/escolherUsuario.jpg" width="200">
+    <img src="assets/gifs/interesses.gif" width="200">
 </p>
 
 <h2>Sobre o projeto</h2>
