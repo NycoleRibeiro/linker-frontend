@@ -11,14 +11,18 @@ import ContinuarButton from '../../../components/Button/ContinuarButton';
 import ProgressBar from '../../../components/Input/ProgressBar';
 import ErrorMessage from '../../../components/ErrorMessage';
 
-function Nome({navigation}) {
+function Nome({navigation, route}) {
     const [nome, setNome] = React.useState("");
     const [errorMessage, setErrorMessage] = useState(false);
 
+    // variavel que vai ser passada para todas as telas
+    const data = {nome: '', numero: '', fotos: '', sobre: '', local: ''};
+
     function handleNome() {
         if (nome) {
-            console.log("Nome:",nome);
-            navigation.navigate('Numero')
+            // Insere o nome na variavel data e vai para a próxima tela
+            data.nome = nome;
+            navigation.navigate('Numero', data)
         } else {
             // Se o usuário não preencheu o campo, mostra o ErrorMessage
             setErrorMessage(true);

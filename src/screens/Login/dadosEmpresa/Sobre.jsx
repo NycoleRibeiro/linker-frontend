@@ -12,15 +12,20 @@ import ContinuarButton from '../../../components/Button/ContinuarButton';
 import ProgressBar from '../../../components/Input/ProgressBar';
 import BackButton from '../../../components/Button/BackButton';
 
-function Sobre({navigation}) {
+function Sobre({navigation, route}) {
     const [description, setDescription] = React.useState("");
     const [linkSite, setLinkSite] = React.useState("");
 
-    function handleAbout(text) {
-        console.log("Descrição:", description);
-        console.log("LinkSite:", linkSite);
+    const data = route.params;
 
-        navigation.navigate('Local')
+    function handleAbout(text) {
+        // Insere os dados na variável data e vai para a próxima tela
+        // São opcionais então se o usuário não colocar, vai como string vazia
+        data.sobre = {
+            descricao: description,
+            linkSite: linkSite,
+        }
+        navigation.navigate('Local', data)
     }
 
     return (

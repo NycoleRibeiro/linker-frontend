@@ -12,8 +12,9 @@ import { css } from './Css.js';
 import ContinuarButton from '../../../components/Button/ContinuarButton';
 import ErrorMessage from '../../../components/ErrorMessage';
 
-function Interesses({navigation}) {
+function Interesses({navigation, route}) {
     const [errorMessage, setErrorMessage] = useState(false);
+    const data = route.data;
 
     // lista de areas de interesse
     const interesses = ['Front-end', 'Desenvolvimento Web', 'Gestão de Projetos', 'Fullstack', 'Big Data', 'Ciência de Dados', 'Banco de Dados', 'Back-end', 'Business Intelligence', 'Mobile', 'Cloud Computing', 'Segurança da Informação']
@@ -38,8 +39,18 @@ function Interesses({navigation}) {
             // se nenhum interesse estiver selecionado, aparece o ErrorMessage
             setErrorMessage(true);
         } else {
-            // retorna a lista de interesses selecionados e vai pra proxima tela
-            console.log("Interesses:",selectedInterests);
+            // insere a lista de interesses selecionados em data
+            data.interesses = selectedInterests;
+            // aqui o data estará completo (dados opcionais do sobre podem ser uma string vazia)
+            // e não poderá ser alterado voltando a tela (apenas no editar usuário)
+            console.log(data);
+            
+            /* ---------------------------------------------------
+            ACREDITO QUE SEJA POR AQUI QUE SALVA OS DADOS NO BD
+            NÃO SEI FAZER ISSO ENTÃO BOA SORTE PRA QUEM FOR FAZER
+            -------------------------------------------------------*/
+
+            // redireciona para página inicial do app
             navigation.reset({
                 index: 0,
                 routes: [{

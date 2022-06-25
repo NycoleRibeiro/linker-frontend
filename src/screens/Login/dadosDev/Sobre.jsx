@@ -12,17 +12,23 @@ import ContinuarButton from '../../../components/Button/ContinuarButton';
 import ProgressBar from '../../../components/Input/ProgressBar';
 import BackButton from '../../../components/Button/BackButton';
 
-function Sobre({navigation}) {
+function Sobre({navigation, route}) {
     const [description, setDescription] = React.useState("");
     const [linkedinUser, setLinkedinUser] = React.useState("");
     const [githubUser, setGithubUser] = React.useState("");
 
-    function handleAbout(text) {
-        console.log("Descrição:", description);
-        console.log("Linkedin:", linkedinUser);
-        console.log("Github:", githubUser);
+    const data = route.params;
 
-        navigation.navigate('Local')
+    function handleAbout() {
+        // Insere os dados na variável data
+        // São opcionais então se o usuário não colocar, vai como string vazia
+        data.sobre = {
+            description: description,
+            linkedinUser: linkedinUser,
+            githubUser: githubUser,
+        }
+        // Vai para a próxima tela
+        navigation.navigate('Local', data)
     }
 
     return (

@@ -12,15 +12,18 @@ import PhoneInput from "react-native-phone-number-input";
 import ErrorMessage from '../../../components/ErrorMessage';
 
 
-function Numero({navigation}) {
+function Numero({navigation, route}) {
     const [value, setValue] = useState("");
     const [formattedValue, setFormattedValue] = useState("");
     const [errorMessage, setErrorMessage] = useState(false);
 
-    function handleNumber(text) {
+    const data = route.params;
+
+    function handleNumber() {
         if (formattedValue && value) {
-            console.log("Celular:", formattedValue);
-            navigation.navigate('Fotos')
+            // Insere o numero no objeto data e vai para a próxima tela
+            data.numero = formattedValue;
+            navigation.navigate('Fotos', data)
         } else {
             // Se o usuário não preencheu o campo, mostra o ErrorMessage
             setErrorMessage(true);

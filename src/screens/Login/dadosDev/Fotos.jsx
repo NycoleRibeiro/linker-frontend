@@ -15,9 +15,11 @@ import BackButton from '../../../components/Button/BackButton';
 import ErrorMessage from '../../../components/ErrorMessage';
 
 
-function Fotos({navigation}) {
+function Fotos({navigation, route}) {
     const [images, setImages] = useState([]);
     const [errorMessage, setErrorMessage] = useState(false);
+
+    const data = route.params;
 
     const pickImage = async () => {
         let result = await ImagePicker.launchImageLibraryAsync({
@@ -41,9 +43,9 @@ function Fotos({navigation}) {
             // Se não tiver nenhuma imagem cadastrada, mostra o ErrorMessage
             setErrorMessage(true);
         } else {
-            // Retorna o array de imagens cadastradas e vai para a próxima tela
-            console.log(images);
-            navigation.navigate('Sobre');
+            // Insere o array de imagens em data e vai para a próxima tela
+            data.fotos = images;
+            navigation.navigate('Sobre', data);
         }
     }
 
@@ -146,10 +148,8 @@ const styles = StyleSheet.create({
         marginTop: "25%",
     },
     fotoContainer: {
-        //width: 150,
         width: '32%',
         height: '65%',
-        //height: 240,
         marginRight: "5%",
         backgroundColor: "#3f3f46",
         borderRadius: 10,

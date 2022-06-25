@@ -12,20 +12,26 @@ import ProgressBar from '../../../components/Input/ProgressBar';
 import BackButton from '../../../components/Button/BackButton';
 import ErrorMessage from '../../../components/ErrorMessage';
 
-function Local({navigation}) {
+function Local({navigation, route}) {
     const [state, setState] = useState('');
     const [city, setCity] = React.useState("");
 
     const [errorMessage, setErrorMessage] = useState(false);
 
+    const data = route.params;
+
     function handleLocal(text) {
         if (state && city) {
-            // Retorna a localização e vai para a próxima tela
-            console.log("Localização:", city, "-", state);
+            // Insere a localização no data e vai para a próxima tela
+            data.local = {
+                cidade: city,
+                estado: state,
+            };
             navigation.reset({
                 index: 0,
                 routes: [{
-                    name: 'Interesses'
+                    name: 'Interesses',
+                    data: data
                 }]
             })
         }

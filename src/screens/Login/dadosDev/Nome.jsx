@@ -15,10 +15,14 @@ function Nome({navigation}) {
     const [nome, setNome] = React.useState("");
     const [errorMessage, setErrorMessage] = useState(false);
 
+    // variavel que vai ser passada para todas as telas
+    const data = {nome: '', numero: '', fotos: '', sobre: '', local: '', interesses: ''};
+
     function handleNome() {
         if (nome) {
-            console.log("Nome:",nome);
-            navigation.navigate('Numero')
+            // Insere o nome no objeto data e vai para a próxima tela
+            data.nome = nome;
+            navigation.navigate('Numero', data);
         } else {
             // Se o usuário não preencheu o campo, mostra o ErrorMessage
             setErrorMessage(true);

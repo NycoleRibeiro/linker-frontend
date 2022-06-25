@@ -12,16 +12,31 @@ import ProgressBar from '../../../components/Input/ProgressBar';
 import BackButton from '../../../components/Button/BackButton';
 import ErrorMessage from '../../../components/ErrorMessage';
 
-function Local({navigation}) {
+function Local({navigation, route}) {
     const [state, setState] = useState('');
     const [city, setCity] = React.useState("");
 
     const [errorMessage, setErrorMessage] = useState(false);
 
+    const data = route.params;
+
     function handleLocal(text) {
         if (state && city) {
-            // Retorna a localização e vai para a próxima tela
-            console.log("Localização:", city, "-", state);
+            // Insere a localização no objeto data
+            data.local = {
+                cidade: city,
+                estado: state,
+            }
+            // aqui o data estará completo (dados opcionais do sobre podem ser uma string vazia)
+            // e não poderá ser alterado voltando a tela (apenas no editar usuário)
+            console.log(data);
+
+            /* ---------------------------------------------------
+            ACREDITO QUE SEJA POR AQUI QUE SALVA OS DADOS NO BD
+            NÃO SEI FAZER ISSO ENTÃO BOA SORTE PRA QUEM FOR FAZER
+            -------------------------------------------------------*/
+
+            // redireciona para página inicial do app
             navigation.reset({
                 index: 0,
                 routes: [{
