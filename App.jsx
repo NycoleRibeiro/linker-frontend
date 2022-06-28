@@ -5,6 +5,7 @@ import { StyleSheet,
         StatusBar } from 'react-native';
 import * as SplashScreen from 'expo-splash-screen';
 import { useFonts,
+        Inter_700Bold,
         Inter_600SemiBold,
         Inter_400Regular } from '@expo-google-fonts/inter';
 import { NavigationContainer } from '@react-navigation/native';
@@ -15,6 +16,7 @@ import { Routes } from './src/routes';
 export default function App() {
 
   let [fontsLoaded] = useFonts({
+    Inter_700Bold,
     Inter_600SemiBold,
     Inter_400Regular
   });
