@@ -9,8 +9,13 @@ import { FontAwesome5 } from '@expo/vector-icons';
 
 import { css } from './Css.js';
 import Vaga from '../../../components/Vagas/Vaga.jsx';
+import { empresas } from '../../../../assets/dadosTeste.js'
 
 export function Profile() {
+
+    //dados para teste, será substituido por dados do banco
+    const empresa = empresas[0];
+
     return (
         <View style={css.container}>
             <View style={css.header}>
@@ -24,17 +29,23 @@ export function Profile() {
             <View style={css.bioContainer}>
                 <View style={css.imageContainer}>
                     <Image
-                    source={require('../../../../assets/img/iconColor.png')}
+                    source={{uri: empresa.imagens[0]}}
                     style={css.profileImage} />
                 </View>
+
                 <Text
                 numberOfLines={1}
                 adjustsFontSizeToFit
-                style={css.nomeEmpresa}>Linker</Text>
+                style={css.nomeEmpresa}>
+                    {empresa.nome}
+                </Text>
+
                 <Text
                 numberOfLines={3}
                 adjustsFontSizeToFit
-                style={css.bioEmpresa}>Um app de vagas para desenvolvedores</Text>
+                style={css.bioEmpresa}>
+                    {empresa.bio}
+                </Text>
             </View>
             <View style={css.menuButtons}>
                 <TouchableHighlight
@@ -60,11 +71,17 @@ export function Profile() {
                 height: "100%",
                 paddingHorizontal: 5}}
             >
-                <Vaga
-                title="Desenvolvedor Web"
-                areas={['front-end','web']}
-                salary='11.139,00'/>
-                
+
+                {empresa.vagas.map((vaga) => {
+                    return (
+                        <Vaga
+                        key={vaga.id}
+                        title={vaga.nome}
+                        areas={vaga.areas}
+                        salary={vaga.salario}/>
+                    )
+                })}
+
             </ScrollView>
             <TouchableHighlight style={css.buttonCriarVaga}>
                 <FontAwesome5
