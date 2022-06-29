@@ -61,6 +61,7 @@ export function Profile() {
                 </TouchableHighlight>
             </View>
             <ScrollView
+            overScrollMode='never'
             showsVerticalScrollIndicator
             contentContainerStyle={{
                 justifyContent: 'center',
