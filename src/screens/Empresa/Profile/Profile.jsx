@@ -7,18 +7,21 @@ import { View,
 from 'react-native';
 import { FontAwesome5 } from '@expo/vector-icons';
 
-import { css } from './Css.js';
+import { cssProfile } from './Css.js';
 import Vaga from '../../../components/Vagas/Vaga.jsx';
 import { empresas } from '../../../../assets/dadosTeste.js'
 
-export function Profile() {
+export function Profile({navigation, route}) {
 
     //dados para teste, será substituido por dados do banco
     const empresa = empresas[0];
+    if (route.params) {
+        const empresa = route.params.empresa;
+    }
 
     return (
-        <View style={css.container}>
-            <View style={css.header}>
+        <View style={cssProfile.container}>
+            <View style={cssProfile.header}>
                 <Image
                 source={require('../../../../assets/img/headerLogo.png')}
                 style={{
@@ -26,40 +29,44 @@ export function Profile() {
                     height: '100%',
                 }} />
             </View>
-            <View style={css.bioContainer}>
-                <View style={css.imageContainer}>
+
+            <View style={cssProfile.bioContainer}>
+                <View style={cssProfile.imageContainer}>
                     <Image
                     source={{uri: empresa.imagens[0]}}
-                    style={css.profileImage} />
+                    style={cssProfile.profileImage} />
                 </View>
 
                 <Text
                 numberOfLines={1}
                 adjustsFontSizeToFit
-                style={css.nomeEmpresa}>
+                style={cssProfile.nomeEmpresa}>
                     {empresa.nome}
                 </Text>
 
                 <Text
                 numberOfLines={3}
                 adjustsFontSizeToFit
-                style={css.bioEmpresa}>
+                style={cssProfile.bioEmpresa}>
                     {empresa.bio}
                 </Text>
             </View>
-            <View style={css.menuButtons}>
+
+            <View style={cssProfile.menuButtons}>
                 <TouchableHighlight
-                style={css.menuButton}>
-                    <Text style={css.menuButtonTextVagas}>Vagas</Text>
+                style={cssProfile.menuButton}>
+                    <Text style={cssProfile.menuButtonTextVagas}>Vagas</Text>
                 </TouchableHighlight>
+
                 <TouchableHighlight
                 activeOpacity={0.8}
                 underlayColor="#18181f"
-                onPress={() => alert('Pressed!')}
-                style={css.menuButton}>
-                    <Text style={css.menuButtonTextEdit}>Editar Perfil</Text>
+                onPress={() => navigation.navigate('EditProfile', {empresa: empresa})}
+                style={cssProfile.menuButton}>
+                    <Text style={cssProfile.menuButtonTextEdit}>Editar Perfil</Text>
                 </TouchableHighlight>
             </View>
+
             <ScrollView
             overScrollMode='never'
             showsVerticalScrollIndicator
@@ -84,9 +91,11 @@ export function Profile() {
                 })}
 
             </ScrollView>
-            <TouchableHighlight style={css.buttonCriarVaga}>
+
+            {/* Botão de criar nova vaga */}
+            <TouchableHighlight style={cssProfile.buttonCriarVaga}>
                 <FontAwesome5
-                style={css.buttonCriarVagaText}
+                style={cssProfile.buttonCriarVagaText}
                 name="plus" />
             </TouchableHighlight>
 
