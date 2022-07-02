@@ -7,7 +7,7 @@ import Home from '../screens/Empresa/Home/Home';
 import Explore from '../screens/Empresa/Explore/Explore';
 import Likes from '../screens/Empresa/Likes/Likes';
 import Chat from '../screens/Empresa/Chat/Chat';
-import Profile from '../screens/Empresa/Profile/Profile';
+import EnterpriseProfile from './empresa/profile.routes';
 
 const { Navigator, Screen } = createBottomTabNavigator();
 const css = StyleSheet.create({
@@ -20,6 +20,7 @@ const css = StyleSheet.create({
 export function AppEmpresaRoutes() {
     return (
         <Navigator
+            initialRouteName="EnterpriseProfile"
             screenOptions={{
                 headerShown: false,
                 tabBarActiveTintColor: '#FD2A7B',
@@ -85,8 +86,8 @@ export function AppEmpresaRoutes() {
                 }}/>
 
             <Screen
-                name="Profile"
-                component={Profile}
+                name="EnterpriseProfile"
+                component={EnterpriseProfile}
                 options={{
                     tabBarLabel: 'Perfil',
                     tabBarIcon: ({ focused }) => (
