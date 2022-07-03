@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Linker",
-    "slug": "Linker",
+    "slug": "linker",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/img/iconColor.png",

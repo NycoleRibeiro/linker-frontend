@@ -1,29 +1,41 @@
-import React, { useState } from 'react';
-import { View,
+import React, { useEffect, useState } from 'react';
+import {
+    View,
     Text,
     TextInput,
-    ScrollView,}
-from 'react-native';
+    ScrollView,
+}
+    from 'react-native';
 import { StyleSheet } from "react-native";
 
 import { css } from './Css.js';
 import ContinuarButton from '../../../components/Button/ContinuarButton';
 import ProgressBar from '../../../components/Input/ProgressBar';
 
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-function Nome({navigation}) {
+
+function Nome({ navigation }) {
     const [nome, setNome] = React.useState("");
 
     function handleNome(text) {
-        console.log("Nome:",nome);
+        console.log("Nome:", nome);
         navigation.navigate('Numero')
     }
 
+    useEffect(() => {
+        AsyncStorage.getItem("user").then(user => JSON.parse(user))
+            .then(user => {
+                setNome(user.name)
+            });
+    }, []);
+
+
     return (
         <View
-        style={css.container}
-        enabled={true}>
-            <ProgressBar percent="20%"/>
+            style={css.container}
+            enabled={true}>
+            <ProgressBar percent="20%" />
             <ScrollView>
                 <Text style={css.h1}>
                     Meu {'\n'}
@@ -38,6 +50,7 @@ function Nome({navigation}) {
                     keyboardType="default"
                     autoCapitalize="words"
                     maxLength={30}
+                    defaultValue={nome}
                     onChangeText={(text) => {
                         setNome(text);
                     }}
@@ -45,7 +58,7 @@ function Nome({navigation}) {
             </ScrollView>
             <ContinuarButton
                 onPress={handleNome}
-                />
+            />
         </View>
     );
 }
@@ -67,5 +80,5 @@ const style = StyleSheet.create({
         fontFamily: 'Inter_400Regular',
         fontSize: 20,
         color: '#f4f4f5',
-      },
+    },
 });
