@@ -10,9 +10,9 @@ from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 
 import { cssEditProfile } from './Css.js';
-import { empresas } from '../../../../assets/dadosTeste.js'
 import ErrorMessage from '../../../components/ErrorMessage';
 import ContinuarButton from '../../../components/Button/ContinuarButton';
+import AppHeader from '../../../components/AppHeader.jsx';
 
 export default function EditProfile({ navigation, route }) {
 
@@ -79,9 +79,11 @@ export default function EditProfile({ navigation, route }) {
 
     return (
         <View style={cssEditProfile.container}>
-            <View style={cssEditProfile.header}>
-                <Text style={cssEditProfile.headerText}>Editar Perfil</Text>
-            </View>
+
+            <AppHeader
+            headerType='text'
+            headerText='Editar Perfil'/>
+
             <ScrollView>
 
                 {/* Imagens */}

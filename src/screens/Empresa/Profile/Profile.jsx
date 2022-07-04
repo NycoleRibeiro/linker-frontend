@@ -2,14 +2,14 @@ import React, {useState, useEffect} from 'react';
 import { View,
         Text,
         ScrollView,
-        TouchableHighlight,
-        Image,}
+        TouchableHighlight,}
 from 'react-native';
 import { FontAwesome5 } from '@expo/vector-icons';
 
 import { cssProfile } from './Css.js';
 import Vaga from '../../../components/Vagas/Vaga.jsx';
 import HeaderInfo from '../../../components/ProfileComponents/HeaderInfo.jsx';
+import AppHeader from '../../../components/AppHeader.jsx';
 
 import { empresas } from '../../../../assets/dadosTeste.js'
 
@@ -23,14 +23,9 @@ export function Profile({navigation, route}) {
 
     return (
         <View style={cssProfile.container}>
-            <View style={cssProfile.header}>
-                <Image
-                source={require('../../../../assets/img/headerLogo.png')}
-                style={{
-                    width: '100%',
-                    height: '100%',
-                }} />
-            </View>
+
+            <AppHeader
+            headerType='image'/>
 
             <HeaderInfo
             profileImage={empresa.imagens[0]}

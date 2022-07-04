@@ -8,13 +8,6 @@ export const cssProfile = StyleSheet.create({
         //alignItems: "center",
         //justifyContent: "center"
     },
-    header: {
-        width: '100%',
-        height: '5%',
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#18181b'
-    },
     menuButtons: {
         flexDirection: 'row',
         alignItems: 'center',
@@ -68,21 +61,6 @@ export const cssEditProfile = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: "#18181b",
-    },
-    header: {
-        width: '100%',
-        height: '5%',
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: '#18181b',
-        borderBottomWidth: 0.5,
-        borderBottomColor: '#09090A',
-    },
-    headerText: {
-        color: '#FE4072',
-        fontSize: RFPercentage(1.8),
-        textTransform: 'uppercase',
-        fontFamily: 'Inter_700Bold',
     },
     containerFotos: {
         flex: 1,
