@@ -10,6 +10,7 @@ import { cssProfile } from './Css.js';
 import Vaga from '../../../components/Vagas/Vaga.jsx';
 import HeaderInfo from '../../../components/ProfileComponents/HeaderInfo.jsx';
 import AppHeader from '../../../components/AppHeader.jsx';
+import FloatButton from '../../../components/ProfileComponents/FloatButton.jsx';
 
 import { empresas } from '../../../../assets/dadosTeste.js'
 
@@ -74,11 +75,7 @@ export function Profile({navigation, route}) {
             </ScrollView>
 
             {/* Botão de criar nova vaga */}
-            <TouchableHighlight style={cssProfile.buttonCriarVaga}>
-                <FontAwesome5
-                style={cssProfile.buttonCriarVagaText}
-                name="plus" />
-            </TouchableHighlight>
+            <FloatButton buttonType='create'/>
 
         </View>
     );
