@@ -1,15 +1,10 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import { View,
         Text,
-        ScrollView,
-        TouchableHighlight,
         Image,
         StyleSheet,}
 from 'react-native';
 import { RFPercentage } from "react-native-responsive-fontsize";
-
-import { empresas } from '../../../assets/dadosTeste.js'
-
 
 export default function HeaderInfo(props) {
 
