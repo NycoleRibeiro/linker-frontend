@@ -15,41 +15,6 @@ export const cssProfile = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: '#18181b'
     },
-    bioContainer: {
-        width: '100%',
-        minHeight: '30%',
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#18181b',
-        paddingVertical: 5
-    },
-    imageContainer: {
-        width: 120,
-        height: 120,
-        borderRadius: 100,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    profileImage: {
-        width: "100%",
-        height: "100%",
-        borderRadius: 100,
-        resizeMode: 'cover'
-    },
-    nomeEmpresa: {
-        fontSize: RFPercentage(3.5),
-        color: '#f4f4f4',
-        fontFamily: 'Inter_700Bold',
-        marginTop: 5,
-    },
-    bioEmpresa: {
-        fontSize: RFPercentage(1.8),
-        color: '#a1a1aa',
-        fontFamily: 'Inter_400Regular',
-        textAlign: 'center',
-        paddingHorizontal: 20,
-        marginTop: 5
-    },
     menuButtons: {
         flexDirection: 'row',
         alignItems: 'center',

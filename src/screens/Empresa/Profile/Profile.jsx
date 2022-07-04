@@ -9,6 +9,8 @@ import { FontAwesome5 } from '@expo/vector-icons';
 
 import { cssProfile } from './Css.js';
 import Vaga from '../../../components/Vagas/Vaga.jsx';
+import HeaderInfo from '../../../components/ProfileComponents/HeaderInfo.jsx';
+
 import { empresas } from '../../../../assets/dadosTeste.js'
 
 export function Profile({navigation, route}) {
@@ -30,27 +32,11 @@ export function Profile({navigation, route}) {
                 }} />
             </View>
 
-            <View style={cssProfile.bioContainer}>
-                <View style={cssProfile.imageContainer}>
-                    <Image
-                    source={{uri: empresa.imagens[0]}}
-                    style={cssProfile.profileImage} />
-                </View>
+            <HeaderInfo
+            profileImage={empresa.imagens[0]}
+            profileName={empresa.nome}
+            profileBio={empresa.bio} />
 
-                <Text
-                numberOfLines={1}
-                adjustsFontSizeToFit
-                style={cssProfile.nomeEmpresa}>
-                    {empresa.nome}
-                </Text>
-
-                <Text
-                numberOfLines={3}
-                adjustsFontSizeToFit
-                style={cssProfile.bioEmpresa}>
-                    {empresa.bio}
-                </Text>
-            </View>
 
             <View style={cssProfile.menuButtons}>
                 <TouchableHighlight
