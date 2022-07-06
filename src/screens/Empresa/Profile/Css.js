@@ -8,48 +8,6 @@ export const cssProfile = StyleSheet.create({
         //alignItems: "center",
         //justifyContent: "center"
     },
-    header: {
-        width: '100%',
-        height: '5%',
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#18181b'
-    },
-    bioContainer: {
-        width: '100%',
-        minHeight: '30%',
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#18181b',
-        paddingVertical: 5
-    },
-    imageContainer: {
-        width: 120,
-        height: 120,
-        borderRadius: 100,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    profileImage: {
-        width: "100%",
-        height: "100%",
-        borderRadius: 100,
-        resizeMode: 'cover'
-    },
-    nomeEmpresa: {
-        fontSize: RFPercentage(3.5),
-        color: '#f4f4f4',
-        fontFamily: 'Inter_700Bold',
-        marginTop: 5,
-    },
-    bioEmpresa: {
-        fontSize: RFPercentage(1.8),
-        color: '#a1a1aa',
-        fontFamily: 'Inter_400Regular',
-        textAlign: 'center',
-        paddingHorizontal: 20,
-        marginTop: 5
-    },
     menuButtons: {
         flexDirection: 'row',
         alignItems: 'center',
@@ -103,21 +61,6 @@ export const cssEditProfile = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: "#18181b",
-    },
-    header: {
-        width: '100%',
-        height: '5%',
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: '#18181b',
-        borderBottomWidth: 0.5,
-        borderBottomColor: '#09090A',
-    },
-    headerText: {
-        color: '#FE4072',
-        fontSize: RFPercentage(1.8),
-        textTransform: 'uppercase',
-        fontFamily: 'Inter_700Bold',
     },
     containerFotos: {
         flex: 1,
