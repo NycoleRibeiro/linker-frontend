@@ -14,7 +14,7 @@ import FloatButton from '../../../components/ProfileComponents/FloatButton.jsx';
 
 import { empresas } from '../../../../assets/dadosTeste.js'
 
-export function Profile({navigation, route}) {
+export function ProfileVagas({navigation, route}) {
 
     //dados para teste, será substituido por dados do banco
     const empresa = empresas[0];
@@ -36,16 +36,16 @@ export function Profile({navigation, route}) {
 
             <View style={cssProfile.menuButtons}>
                 <TouchableHighlight
-                activeOpacity={0.8}
-                underlayColor="#18181f"
-                onPress={() => navigation.navigate('ProfileVagas', {empresa: empresa})}
                 style={cssProfile.menuButton}>
-                    <Text style={cssProfile.menuButtonTextInactive}>Vagas</Text>
+                    <Text style={cssProfile.menuButtonTextActive}>Vagas</Text>
                 </TouchableHighlight>
 
                 <TouchableHighlight
+                activeOpacity={0.8}
+                underlayColor="#18181f"
+                onPress={() => navigation.navigate('Profile', {empresa: empresa})}
                 style={cssProfile.menuButton}>
-                    <Text style={cssProfile.menuButtonTextActive}>Perfil</Text>
+                    <Text style={cssProfile.menuButtonTextInactive}>Perfil</Text>
                 </TouchableHighlight>
             </View>
 
@@ -62,15 +62,25 @@ export function Profile({navigation, route}) {
                 paddingHorizontal: 5}}
             >
 
+                {empresa.vagas.map((vaga) => {
+                    // WARNING: each child in a list should have a unique key prop.
+                    // Não consegui resolver ainda
+                    return (
+                        <Vaga
+                        key={vaga.id}
+                        title={vaga.nome}
+                        areas={vaga.areas}
+                        salary={vaga.salario}/>
+                    )
+                })}
+
             </ScrollView>
 
-            {/* Botão de editar */}
-            <FloatButton
-            buttonType='edit'
-            onPress={() => navigation.navigate('EditProfile', {empresa: empresa})}/>
+            {/* Botão de criar nova vaga */}
+            <FloatButton buttonType='create'/>
 
         </View>
     );
 }
 
-export default Profile;
+export default ProfileVagas;

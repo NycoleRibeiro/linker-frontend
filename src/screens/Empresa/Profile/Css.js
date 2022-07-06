@@ -23,13 +23,13 @@ export const cssProfile = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
-    menuButtonTextVagas: {
+    menuButtonTextActive: {
         color: '#FE4072',
         fontSize: RFPercentage(1.8),
         textTransform: 'uppercase',
         fontFamily: 'Inter_700Bold',
     },
-    menuButtonTextEdit: {
+    menuButtonTextInactive: {
         color: '#A1A1AA',
         fontSize: RFPercentage(1.8),
         textTransform: 'uppercase',
