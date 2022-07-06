@@ -14,17 +14,17 @@ export default function FloatButton(props) {
         <>
             {props.buttonType === 'create' &&
             <TouchableHighlight
-            style={cssProfile.buttonCreate}>
+            style={cssProfile.button}>
                 <FontAwesome5
-                style={cssProfile.buttonCreateIcon}
+                style={cssProfile.buttonIcon}
                 name="plus" />
             </TouchableHighlight>}
 
             {props.buttonType === 'edit' &&
             <TouchableHighlight
-            style={cssProfile.buttonEdit}>
+            style={cssProfile.button}>
                 <MaterialIcons
-                style={cssProfile.buttonEditIcon}
+                style={cssProfile.buttonIcon}
                 name="edit" />
             </TouchableHighlight>}
         </>
@@ -33,7 +33,7 @@ export default function FloatButton(props) {
 }
 
 const cssProfile = StyleSheet.create({
-    buttonCreate: {
+    button: {
         position: 'absolute',
         width: 50,
         height: 50,
@@ -46,26 +46,7 @@ const cssProfile = StyleSheet.create({
         elevation: 4,
         shadowColor: '#000',
     },
-    buttonCreateIcon: {
-        color: '#f4f4f5',
-        fontSize: RFPercentage(4),
-        fontFamily: 'Inter_700Bold',
-        textTransform: 'lowercase',
-    },
-    buttonEdit: {
-        position: 'absolute',
-        width: 50,
-        height: 50,
-        right: 10,
-        bottom: "2%",
-        borderRadius: 100,
-        backgroundColor: '#fe4072',
-        justifyContent: 'center',
-        alignItems: 'center',
-        elevation: 4,
-        shadowColor: '#000',
-    },
-    buttonEditIcon: {
+    buttonIcon: {
         color: '#f4f4f5',
         fontSize: RFPercentage(4),
         fontFamily: 'Inter_700Bold',
