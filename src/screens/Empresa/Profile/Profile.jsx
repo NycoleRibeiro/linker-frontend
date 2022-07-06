@@ -7,10 +7,10 @@ from 'react-native';
 import { FontAwesome5 } from '@expo/vector-icons';
 
 import { cssProfile } from './Css.js';
-import Vaga from '../../../components/Vagas/Vaga.jsx';
 import HeaderInfo from '../../../components/ProfileComponents/HeaderInfo.jsx';
 import AppHeader from '../../../components/AppHeader.jsx';
 import FloatButton from '../../../components/ProfileComponents/FloatButton.jsx';
+import ContactButtons from '../../../components/ProfileComponents/ContactButtons.jsx';
 
 import { empresas } from '../../../../assets/dadosTeste.js'
 
@@ -61,6 +61,11 @@ export function Profile({navigation, route}) {
                 height: "100%",
                 paddingHorizontal: 5}}
             >
+                <ContactButtons
+                types={["phone", "email", "site"]}
+                phone={empresa.telefone}
+                email={empresa.email}
+                site={empresa.site}/>
 
             </ScrollView>
 
