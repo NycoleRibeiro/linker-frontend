@@ -14,6 +14,8 @@ export default function FloatButton(props) {
         <>
             {props.buttonType === 'create' &&
             <TouchableHighlight
+            onPress={props.onPress}
+            underlayColor="#109a29"
             style={cssProfile.button}>
                 <FontAwesome5
                 style={cssProfile.buttonIcon}
@@ -22,6 +24,8 @@ export default function FloatButton(props) {
 
             {props.buttonType === 'edit' &&
             <TouchableHighlight
+            onPress={props.onPress}
+            underlayColor="#109a29"
             style={cssProfile.button}>
                 <MaterialIcons
                 style={cssProfile.buttonIcon}
