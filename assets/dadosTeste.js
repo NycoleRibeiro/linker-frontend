@@ -7,6 +7,7 @@ export const empresas = [
         site: 'https://www.google.com/',
         telefone: '+5553999999999',
         localizacao: 'São Paulo, SP',
+        email: 'google@gmail.com',
         vagas: [
             {
                 id: 1,
