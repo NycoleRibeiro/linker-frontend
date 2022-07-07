@@ -4,7 +4,7 @@ import { View,
         ScrollView,
         TouchableHighlight,}
 from 'react-native';
-import { FontAwesome5 } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
 
 import { cssProfile } from './Css.js';
 import HeaderInfo from '../../../components/ProfileComponents/HeaderInfo.jsx';
@@ -66,6 +66,13 @@ export function Profile({navigation, route}) {
                 phone={empresa.telefone}
                 email={empresa.email}
                 site={empresa.site}/>
+
+                <View style={{width: '100%', flexDirection: 'row', justifyContent: 'center', marginTop:18}}>
+                    <Ionicons name="md-location-sharp" size={20} color="#3f3f46" />
+                    <Text style={{color:'#a1a1aa', marginLeft:5}}>
+                        {empresa.localizacao}
+                    </Text>
+                </View>
 
             </ScrollView>
 
