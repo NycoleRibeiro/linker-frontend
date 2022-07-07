@@ -23,7 +23,8 @@ export function ProfileVagas({navigation, route}) {
         const empresa = route.params.empresa;
     }
 
-    const [vagasOptionsShown, setVagasOptionsShown] = useState(true);
+    const [vagasOptionsShown, setVagasOptionsShown] = useState(false);
+    const [selectedVaga, setSelectedVaga] = useState(null);
 
     return (
         <View style={cssProfile.container}>
@@ -74,7 +75,10 @@ export function ProfileVagas({navigation, route}) {
                         title={vaga.nome}
                         areas={vaga.areas}
                         salary={vaga.salario}
-                        openOptions={() => setVagasOptionsShown(true)}
+                        openOptions={() => {
+                            setVagasOptionsShown(true)
+                            setSelectedVaga(vaga.id)
+                        }}
                         />
                     )
                 })}
@@ -82,13 +86,17 @@ export function ProfileVagas({navigation, route}) {
             </ScrollView>
 
             {/* Botão de criar nova vaga */}
-            <FloatButton buttonType='create'/>
+            <FloatButton
+            buttonType='create'
+            onPress={() => navigation.navigate('CreateVaga', {empresa: empresa})}
+            />
 
             {/* Botões de opção da vaga */}
             {vagasOptionsShown && (
             <VagaOptions
             title={'Opções da Vaga'}
             close={() => setVagasOptionsShown(false)}
+            vagaID={selectedVaga}
             />
             )}
 
