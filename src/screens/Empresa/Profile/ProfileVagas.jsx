@@ -11,6 +11,7 @@ import Vaga from '../../../components/Vagas/Vaga.jsx';
 import HeaderInfo from '../../../components/ProfileComponents/HeaderInfo.jsx';
 import AppHeader from '../../../components/AppHeader.jsx';
 import FloatButton from '../../../components/ProfileComponents/FloatButton.jsx';
+import VagaOptions from '../../../components/Vagas/VagaOptions.jsx';
 
 import { empresas } from '../../../../assets/dadosTeste.js'
 
@@ -21,6 +22,8 @@ export function ProfileVagas({navigation, route}) {
     if (route.params) {
         const empresa = route.params.empresa;
     }
+
+    const [vagasOptionsShown, setVagasOptionsShown] = useState(true);
 
     return (
         <View style={cssProfile.container}>
@@ -70,7 +73,9 @@ export function ProfileVagas({navigation, route}) {
                         key={vaga.id}
                         title={vaga.nome}
                         areas={vaga.areas}
-                        salary={vaga.salario}/>
+                        salary={vaga.salario}
+                        openOptions={() => setVagasOptionsShown(true)}
+                        />
                     )
                 })}
 
@@ -78,6 +83,14 @@ export function ProfileVagas({navigation, route}) {
 
             {/* Botão de criar nova vaga */}
             <FloatButton buttonType='create'/>
+
+            {/* Botões de opção da vaga */}
+            {vagasOptionsShown && (
+            <VagaOptions
+            title={'Opções da Vaga'}
+            close={() => setVagasOptionsShown(false)}
+            />
+            )}
 
         </View>
     );

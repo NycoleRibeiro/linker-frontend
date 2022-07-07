@@ -11,8 +11,8 @@ import { RFPercentage } from "react-native-responsive-fontsize";
 export default function Vaga(props) {
     return (
         <Pressable
-        key={props.key}
         onPress={() => console.log('Pressed!')}
+        onLongPress={props.openOptions}
         style={({ pressed }) => [
             {
               backgroundColor: pressed
