@@ -52,11 +52,16 @@ export default function VagaOptions(props) {
                         {props.title}
                     </Text>
                 </View>
+
+
                 <View style={css.buttonsArea}>
+
+                    {/*BOTÃO EDITAR*/}
                     <View style={css.buttonArea}>
                         <TouchableHighlight
+                        underlayColor="#fd2a7b"
                         style={css.button}
-                        onPress={props.onPress}>
+                        onPress={props.onPressEdit}>
                                 <MaterialIcons
                                 name="edit"
                                 style={css.buttonIcon}/>
@@ -66,10 +71,12 @@ export default function VagaOptions(props) {
                         </Text>
                     </View>
 
+                    {/*BOTÃO EXCLUIR*/}
                     <View style={css.buttonArea}>
                         <TouchableHighlight
+                        underlayColor="#ff0000"
                         style={css.buttonAttention}
-                        onPress={props.onPress}>
+                        onPress={props.onPressDelete}>
                                 <MaterialCommunityIcons
                                 name="trash-can"
                                 style={css.buttonIcon}/>
@@ -79,10 +86,12 @@ export default function VagaOptions(props) {
                         </Text>
                     </View>
 
+                    {/*BOTÃO DETALHES*/}
                     <View style={css.buttonArea}>
                         <TouchableHighlight
+                        underlayColor="#fd2a7b"
                         style={css.button}
-                        onPress={props.onPress}>
+                        onPress={props.onPressDetail}>
                                 <MaterialCommunityIcons
                                 name="text-long"
                                 style={css.buttonIcon}/>
