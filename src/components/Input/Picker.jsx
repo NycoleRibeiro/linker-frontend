@@ -10,14 +10,14 @@ import { RFPercentage } from "react-native-responsive-fontsize";
 
 
 export default function Picker(props) {
-    var PickerValue = props.value;
 
-    if (PickerValue === '') {
-        PickerValue = props.placeholder
-    }
-
-    const [selectedValue, setSelectedValue] = useState(PickerValue);
+    const [selectedValues, setSelectedValues] = useState([]);
     const [isPickerOpen, setIsPickerOpen] = useState(false);
+
+    // Chama o callback do componente pai para atualizar a lista
+    if (selectedValues !== props.value) {
+        props.updateValue(selectedValues);
+    }
 
     return (
         <View style={css.container}>
@@ -26,8 +26,13 @@ export default function Picker(props) {
             onPress={() => setIsPickerOpen(!isPickerOpen)}
             >
                 <>
-                <Text style={css.pickerText}>{selectedValue}</Text>
-                {isPickerOpen ? <MaterialIcons name="arrow-drop-up" size={30} color="#fff" /> : <MaterialIcons name="arrow-drop-down" size={30} color="#fff" />}
+                    <Text style={css.pickerText}>
+                        {props.placeholder}
+                    </Text>
+
+                    {isPickerOpen
+                    ? <MaterialIcons name="arrow-drop-up" size={30} color="#fff" />
+                    : <MaterialIcons name="arrow-drop-down" size={30} color="#fff" />}
                 </>
             </TouchableHighlight>
 
@@ -41,16 +46,30 @@ export default function Picker(props) {
                 return (
                     <TouchableHighlight
                     key={index}
-                    style={css.pickerItem}
+                    style={selectedValues.includes(item) ? css.pickerItemSelected : css.pickerItem}
                     onPress={() => {
-                        setSelectedValue(item);
-                        setIsPickerOpen(false);
-                        if (selectedValue !== props.value) {
-                            props.updateValue(item);
+                        // Se o item tiver na lista de valores selecionados, remove-o
+                        if (selectedValues.includes(item)) {
+                            setSelectedValues(selectedValues.filter(value => value !== item));
+                        }
+                        // Se o item não tiver na lista de valores selecionados, adiciona-o
+                        else {
+                            setSelectedValues([...selectedValues, item]);
                         }
                     }}
                     >
-                        <Text style={css.pickerItemText}>{item}</Text>
+                        <>
+                            {selectedValues.includes(item) &&
+                            <MaterialIcons name="check" size={20} color="#fff" />
+                            }
+                            <Text
+                            style={selectedValues.includes(item)
+                            ? css.pickerItemSelectedText
+                            : css.pickerItemText
+                            }>
+                                {item}
+                            </Text>
+                        </>
                     </TouchableHighlight>
                 )
             }
@@ -97,10 +116,23 @@ const css = StyleSheet.create({
         borderBottomWidth: 1,
         borderBottomColor: '#30302a',
     },
+    pickerItemSelected: {
+        flexDirection: 'row',
+        paddingVertical: 10,
+        marginHorizontal: 20,
+        borderBottomWidth: 1,
+        borderBottomColor: '#30302a',
+    },
     pickerItemText: {
-        color: '#fff',
+        color: '#a1a1aa',
         fontFamily: 'Inter_400Regular',
         fontSize: RFPercentage(1.8),
     },
+    pickerItemSelectedText: {
+        color: '#fff',
+        fontFamily: 'Inter_400Regular',
+        fontSize: RFPercentage(1.8),
+        marginLeft: 10,
+    }
 })
 

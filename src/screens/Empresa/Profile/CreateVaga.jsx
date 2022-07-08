@@ -23,9 +23,9 @@ export default function CreateVaga({ navigation }) {
     const [localizacaoVaga, setLocalizacaoVaga] = useState('');
     const [requisitosObrigatorios, setRequisitosObrigatorios] = useState([]);
     const [requisitosDesejaveis, setRequisitosDesejaveis] = useState([]);
-    const [area, setArea] = useState('');
+    const [areas, setAreas] = useState([]);
     // lista de areas
-    const areas = ['Front-end', 'Desenvolvimento Web', 'Gestão de Projetos', 'Fullstack', 'Big Data', 'Ciência de Dados', 'Banco de Dados', 'Back-end', 'Business Intelligence', 'Mobile', 'Cloud Computing', 'Segurança da Informação']
+    const defaultAreas = ['Front-end', 'Desenvolvimento Web', 'Gestão de Projetos', 'Fullstack', 'Big Data', 'Ciência de Dados', 'Banco de Dados', 'Back-end', 'Business Intelligence', 'Mobile', 'Cloud Computing', 'Segurança da Informação']
 
     const [beneficios, setBeneficios] = useState('');
     const [salarioVaga, setSalarioVaga] = useState('');
@@ -42,14 +42,15 @@ export default function CreateVaga({ navigation }) {
         setRequisitosDesejaveis(tags);
     }
 
-    // Pega o valor do input de area
-    const updateArea = (area) => {
-        setArea(area);
+    // Pega o valor do input de areas
+    const updateArea = (areas) => {
+        setAreas(areas);
+        console.log(areas);
     }
 
     // Passa todos os dados para a próxima tela
     const handleDadosVaga = () => {
-        if (nomeVaga === '' || tipoVaga === '' || requisitosObrigatorios.length === 0 || area === '' || salarioVaga === '') {
+        if (nomeVaga === '' || tipoVaga === '' || requisitosObrigatorios.length === 0 || areas.length === 0 || salarioVaga === '') {
             // Se os dados obrigatórios não estiverem preenchidos, retorna um alerta
             Alert.alert('Dados Incompletos', 'Preencha todos os campos obrigatórios marcados com * para continuar');
         } else if (localizacaoVaga === '' && tipoVaga != 'remoto') {
@@ -64,7 +65,7 @@ export default function CreateVaga({ navigation }) {
                 localizacaoVaga,
                 requisitosObrigatorios,
                 requisitosDesejaveis,
-                area,
+                areas,
                 beneficios,
                 salarioVaga,
                 salarioNegociavel,
@@ -183,15 +184,15 @@ export default function CreateVaga({ navigation }) {
                 placeholder="Adicione as tags separadas por vírgula"
                 />
 
-                {/* Área */}
+                {/* Áreas */}
                 <Text style={cssEditProfile.title}>
                     Área da Vaga *
                 </Text>
                 <Picker
-                value={area}
-                placeholder="Selecione uma área"
+                value={areas}
+                placeholder="Selecione as áreas da vaga"
                 updateValue={updateArea}
-                items={areas}
+                items={defaultAreas}
                 />
 
                 {/* Benefícios */}
