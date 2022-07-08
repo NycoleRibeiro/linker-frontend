@@ -13,7 +13,7 @@ export default function SimpleInput(props) {
             placeholderTextColor="#A1A1AA"
             value={props.value}
             selectionColor="#f4f4f5"
-            keyboardType="default"
+            keyboardType={props.keyboardType}
             autoCapitalize={props.autoCapitalize}
             maxLength={props.maxLength}
             onChangeText={props.onChangeText}
