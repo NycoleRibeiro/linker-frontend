@@ -11,7 +11,8 @@ import { RFPercentage } from "react-native-responsive-fontsize";
 
 export default function Picker(props) {
 
-    const [selectedValues, setSelectedValues] = useState([]);
+    const areas = props.value;
+    const [selectedValues, setSelectedValues] = useState(areas);
     const [isPickerOpen, setIsPickerOpen] = useState(false);
 
     // Chama o callback do componente pai para atualizar a lista
