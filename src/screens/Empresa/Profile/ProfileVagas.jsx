@@ -2,9 +2,9 @@ import React, {useState, useEffect} from 'react';
 import { View,
         Text,
         ScrollView,
-        TouchableHighlight,}
+        TouchableHighlight,
+        Alert,}
 from 'react-native';
-import { FontAwesome5 } from '@expo/vector-icons';
 
 import { cssProfile } from './Css.js';
 import Vaga from '../../../components/Vagas/Vaga.jsx';
@@ -25,6 +25,30 @@ export function ProfileVagas({navigation, route}) {
 
     const [vagasOptionsShown, setVagasOptionsShown] = useState(false);
     const [selectedVaga, setSelectedVaga] = useState(null);
+
+    // função para excluir vaga
+    const deleteVaga = () => {
+        Alert.alert(
+            'Excluir vaga',
+            'Tem certeza que deseja excluir esta vaga?',
+            [
+                {text: 'Não', style: 'cancel'},
+                {text: 'Sim', onPress: () => {
+                    // retorna o id da vaga selecionada
+                    console.log('vaga excluída: ', selectedVaga);
+
+                    /* REMOVER A VAGA COM ID {selectedVaga} do banco de dados */
+
+                    // fecha o modal
+                    setVagasOptionsShown(false);
+                }}
+            ],
+            {cancelable: false}
+        );
+
+
+
+    }
 
     return (
         <View style={cssProfile.container}>
@@ -66,17 +90,19 @@ export function ProfileVagas({navigation, route}) {
                 paddingHorizontal: 5}}
             >
 
-                {empresa.vagas.map((vaga) => {
+                {empresa.vagas.map((vaga, index) => {
                     // WARNING: each child in a list should have a unique key prop.
                     // Não consegui resolver ainda
                     return (
                         <Vaga
                         key={vaga.id}
+                        id={vaga.id}
                         title={vaga.nome}
                         areas={vaga.areas}
                         salary={vaga.salario}
                         openOptions={() => {
                             setVagasOptionsShown(true)
+                            // Atribui o id da vaga clicada para o estado
                             setSelectedVaga(vaga.id)
                         }}
                         />
@@ -96,7 +122,9 @@ export function ProfileVagas({navigation, route}) {
             <VagaOptions
             title={'Opções da Vaga'}
             close={() => setVagasOptionsShown(false)}
-            vagaID={selectedVaga}
+            onPressEdit={() => {}}
+            onPressDelete={deleteVaga}
+            onPressDetail={() => {}}
             />
             )}
 
