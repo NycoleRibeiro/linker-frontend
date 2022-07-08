@@ -4,6 +4,8 @@ import { View,
         ScrollView,
         TouchableHighlight,
         StyleSheet,
+        Switch,
+        Alert,
         } from 'react-native';
 import { RFPercentage } from "react-native-responsive-fontsize";
 
@@ -12,8 +14,9 @@ import AppHeader from '../../../components/AppHeader.jsx';
 import SimpleInput from '../../../components/Input/SimpleInput.jsx';
 import TagsInput from '../../../components/Input/TagsInput.jsx';
 import Picker from '../../../components/Input/Picker.jsx';
+import ContinuarButton from '../../../components/Button/ContinuarButton.jsx';
 
-export default function CreateVaga(props) {
+export default function CreateVaga({ navigation }) {
     const [nomeVaga, setNomeVaga] = useState('');
     const [descricaoVaga, setDescricaoVaga] = useState('');
     const [tipoVaga, setTipoVaga] = useState('');
@@ -42,7 +45,32 @@ export default function CreateVaga(props) {
     // Pega o valor do input de area
     const updateArea = (area) => {
         setArea(area);
-        console.log(area);
+    }
+
+    // Passa todos os dados para a próxima tela
+    const handleDadosVaga = () => {
+        if (nomeVaga === '' || tipoVaga === '' || requisitosObrigatorios.length === 0 || area === '' || salarioVaga === '') {
+            // Se os dados obrigatórios não estiverem preenchidos, retorna um alerta
+            Alert.alert('Dados Incompletos', 'Preencha todos os campos obrigatórios marcados com * para continuar');
+        } else if (localizacaoVaga === '' && tipoVaga != 'remoto') {
+            // Se o tipo de vaga não for remoto, a localização é obrigatória
+            Alert.alert('Dados Incompletos', 'Caso a vaga não seja remota, preencha o campo de localização');
+        } else {
+            // Se os dados obrigatórios estiverem preenchidos, passa os dados para a próxima tela
+            navigation.navigate('CreateTeste', {
+                nomeVaga,
+                descricaoVaga,
+                tipoVaga,
+                localizacaoVaga,
+                requisitosObrigatorios,
+                requisitosDesejaveis,
+                area,
+                beneficios,
+                salarioVaga,
+                salarioNegociavel,
+            });
+        }
+
     }
 
     return (
@@ -119,7 +147,7 @@ export default function CreateVaga(props) {
                 </View>
 
                 {/* Localização */}
-                {tipoVaga != 'remoto'  &&
+                {(tipoVaga != 'remoto' && tipoVaga != '')  &&
                 <>
                 <Text style={cssEditProfile.title}>
                     Localização *
@@ -147,7 +175,7 @@ export default function CreateVaga(props) {
 
                 {/* Requisitos desejáveis */}
                 <Text style={cssEditProfile.title}>
-                    Requisitos desejáveis *
+                    Requisitos desejáveis
                 </Text>
                 <TagsInput
                 tags={requisitosDesejaveis}
@@ -166,11 +194,57 @@ export default function CreateVaga(props) {
                 items={areas}
                 />
 
+                {/* Benefícios */}
+                <Text style={cssEditProfile.title}>
+                    Benefícios
+                </Text>
+                <SimpleInput
+                placeholder="Descreva os benefícios que esta vaga oferece"
+                value={beneficios}
+                multiline={true}
+                numberOfLines={5}
+                maxLength={500}
+                textAlignVertical="top"
+                onChangeText={text => setBeneficios(text)}
+                />
 
+                {/* Salário */}
+                <Text style={cssEditProfile.title}>
+                    Salário *
+                </Text>
+                <SimpleInput
+                placeholder="R$"
+                value={salarioVaga}
+                keyboardType="number-pad"
+                onChangeText={text => setSalarioVaga(text)}
+                />
 
+                {/* Salário negociável */}
+                <View style={{
+                flexDirection: 'row',
+                marginHorizontal: 20,
+                alignItems: 'center',
 
-
+                }}>
+                    <Switch
+                    value={salarioNegociavel}
+                    onValueChange={() => setSalarioNegociavel(!salarioNegociavel)}
+                    thumbColor="#FD2A7B"
+                    trackColor={{true: '#fe4072', false: '#3f3f46'}}
+                    />
+                    <Text style={{
+                        color: '#f4f4f5',
+                        fontSize: 13,
+                        fontFamily: 'Inter_400Regular',
+                    }}>
+                    Salário negociável
+                    </Text>
+                </View>
             </ScrollView>
+            <ContinuarButton
+                name="Criar Teste"
+                onPress={handleDadosVaga}
+            />
         </View>
     )
 }
