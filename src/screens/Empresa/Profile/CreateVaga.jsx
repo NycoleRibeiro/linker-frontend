@@ -1,11 +1,9 @@
-import React, { useState, Component } from 'react';
+import React, { useState } from 'react';
 import { View,
         Text,
         ScrollView,
         TouchableHighlight,
         StyleSheet,
-        TextInput,
-        Dimensions,
         } from 'react-native';
 import { RFPercentage } from "react-native-responsive-fontsize";
 
@@ -13,6 +11,7 @@ import { cssEditProfile, cssCreateVaga } from './Css.js';
 import AppHeader from '../../../components/AppHeader.jsx';
 import SimpleInput from '../../../components/Input/SimpleInput.jsx';
 import TagsInput from '../../../components/Input/TagsInput.jsx';
+import Picker from '../../../components/Input/Picker.jsx';
 
 export default function CreateVaga(props) {
     const [nomeVaga, setNomeVaga] = useState('');
@@ -20,23 +19,30 @@ export default function CreateVaga(props) {
     const [tipoVaga, setTipoVaga] = useState('');
     const [localizacaoVaga, setLocalizacaoVaga] = useState('');
     const [requisitosObrigatorios, setRequisitosObrigatorios] = useState([]);
-
     const [requisitosDesejaveis, setRequisitosDesejaveis] = useState([]);
     const [area, setArea] = useState('');
+    // lista de areas
+    const areas = ['Front-end', 'Desenvolvimento Web', 'Gestão de Projetos', 'Fullstack', 'Big Data', 'Ciência de Dados', 'Banco de Dados', 'Back-end', 'Business Intelligence', 'Mobile', 'Cloud Computing', 'Segurança da Informação']
+
     const [beneficios, setBeneficios] = useState('');
     const [salarioVaga, setSalarioVaga] = useState('');
     const [salarioNegociavel, setSalarioNegociavel] = useState(false);
 
 
-    console.log('RO: ', requisitosObrigatorios);
-    console.log('RD: ', requisitosDesejaveis);
-
+    // Pega as tags do input de requisitos obrigatorios
     const updateTagsRO = (tags) => {
         setRequisitosObrigatorios(tags);
     }
 
+    // Pega as tags do input de requisitos desejaveis
     const updateTagsRD = (tags) => {
         setRequisitosDesejaveis(tags);
+    }
+
+    // Pega o valor do input de area
+    const updateArea = (area) => {
+        setArea(area);
+        console.log(area);
     }
 
     return (
@@ -148,6 +154,19 @@ export default function CreateVaga(props) {
                 updateTags={updateTagsRD}
                 placeholder="Adicione as tags separadas por vírgula"
                 />
+
+                {/* Área */}
+                <Text style={cssEditProfile.title}>
+                    Área da Vaga *
+                </Text>
+                <Picker
+                value={area}
+                placeholder="Selecione uma área"
+                updateValue={updateArea}
+                items={areas}
+                />
+
+
 
 
 
