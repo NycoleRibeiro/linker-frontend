@@ -26,6 +26,13 @@ export function ProfileVagas({navigation, route}) {
     const [vagasOptionsShown, setVagasOptionsShown] = useState(false);
     const [selectedVaga, setSelectedVaga] = useState(null);
 
+
+    // Redireciona para a tela de editar vaga
+    const editVaga = () => {
+        // envia os dados da vaga clicada para a próxima tela
+        navigation.navigate('EditVaga', {vaga: selectedVaga});
+    }
+
     // função para excluir vaga
     const deleteVaga = () => {
         Alert.alert(
@@ -35,9 +42,9 @@ export function ProfileVagas({navigation, route}) {
                 {text: 'Não', style: 'cancel'},
                 {text: 'Sim', onPress: () => {
                     // retorna o id da vaga selecionada
-                    console.log('vaga excluída: ', selectedVaga);
+                    console.log('vaga excluída: ', selectedVaga.id);
 
-                    /* REMOVER A VAGA COM ID {selectedVaga} do banco de dados */
+                    /* REMOVER A VAGA COM ID {selectedVaga.id} do banco de dados */
 
                     // fecha o modal
                     setVagasOptionsShown(false);
@@ -103,7 +110,7 @@ export function ProfileVagas({navigation, route}) {
                         openOptions={() => {
                             setVagasOptionsShown(true)
                             // Atribui o id da vaga clicada para o estado
-                            setSelectedVaga(vaga.id)
+                            setSelectedVaga(vaga)
                         }}
                         />
                     )
@@ -122,7 +129,7 @@ export function ProfileVagas({navigation, route}) {
             <VagaOptions
             title={'Opções da Vaga'}
             close={() => setVagasOptionsShown(false)}
-            onPressEdit={() => {}}
+            onPressEdit={editVaga}
             onPressDelete={deleteVaga}
             onPressDetail={() => {}}
             />

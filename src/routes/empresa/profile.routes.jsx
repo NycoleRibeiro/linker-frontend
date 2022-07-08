@@ -5,6 +5,7 @@ import EditProfile from '../../screens/Empresa/Profile/EditProfile';
 import ProfileVagas from '../../screens/Empresa/Profile/ProfileVagas';
 import CreateVaga from '../../screens/Empresa/Profile/CreateVaga';
 import CreateTeste from '../../screens/Empresa/Profile/CreateTeste';
+import EditVaga from '../../screens/Empresa/Profile/EditVaga';
 
 const { Navigator, Screen } = createStackNavigator();
 
@@ -43,6 +44,10 @@ export function EnterpriseProfile() {
             component={CreateTeste}
             />
 
+            <Screen
+            name="EditVaga"
+            component={EditVaga}
+            />
 
         </Navigator>
     );
