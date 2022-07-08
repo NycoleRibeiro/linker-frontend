@@ -45,7 +45,6 @@ export default function CreateVaga({ navigation }) {
     // Pega o valor do input de areas
     const updateArea = (areas) => {
         setAreas(areas);
-        console.log(areas);
     }
 
     // Passa todos os dados para a próxima tela
