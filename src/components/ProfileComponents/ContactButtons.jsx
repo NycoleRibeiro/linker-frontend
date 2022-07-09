@@ -26,7 +26,7 @@ export default function ContactButtons(props) {
             <TouchableHighlight
             activeOpacity={0.8}
             underlayColor="#18181f"
-            onPress={() => Linking.openURL(`whatsapp://send?phone=${props.phone}`)}
+            onPress={() => Linking.openURL(`https://api.whatsapp.com/send?phone=${props.phone}`)}
             style={css.button}>
                 <FontAwesome5 name="whatsapp" style={css.buttonIcon} />
             </TouchableHighlight>
