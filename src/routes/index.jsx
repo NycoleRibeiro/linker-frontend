@@ -3,11 +3,14 @@ import { AppEmpresaRoutes } from './appEmpresa.routes';
 import { AppDesenvolvedorRoutes } from './appDesenvolvedor.routes';
 
 const isSignedIn = true;
+const accountType = 'desenvolvedor';
 
 export function Routes() {
     return (
         isSignedIn ? (
-            <AppEmpresaRoutes />
+            // Se for empresa, redireciona para o <AppEmpresaRoutes>
+            // Se for desenvolvedor, redireciona para o <AppDesenvolvedorRoutes>
+            accountType === 'empresa' ? <AppEmpresaRoutes /> : <AppDesenvolvedorRoutes />
           ) : (
             <LoginRoutes/>
           )
