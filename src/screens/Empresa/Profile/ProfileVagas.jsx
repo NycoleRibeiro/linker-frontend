@@ -57,6 +57,12 @@ export function ProfileVagas({navigation, route}) {
 
     }
 
+    // Redireciona para a tela de editar vaga
+    const vagaDetails = () => {
+        // envia os dados da vaga clicada para a próxima tela
+        navigation.navigate('VagaDetails', {vaga: selectedVaga, empresa: empresa});
+    }
+
     return (
         <View style={cssProfile.container}>
 
@@ -131,7 +137,7 @@ export function ProfileVagas({navigation, route}) {
             close={() => setVagasOptionsShown(false)}
             onPressEdit={editVaga}
             onPressDelete={deleteVaga}
-            onPressDetail={() => {}}
+            onPressDetail={vagaDetails}
             />
             )}
 
