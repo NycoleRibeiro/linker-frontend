@@ -4,13 +4,13 @@ import { View,
         ScrollView,
         TouchableHighlight,}
 from 'react-native';
-import { FontAwesome5 } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
 
 import { cssProfile } from './Css.js';
-import Vaga from '../../../components/Vagas/Vaga.jsx';
 import HeaderInfo from '../../../components/ProfileComponents/HeaderInfo.jsx';
 import AppHeader from '../../../components/AppHeader.jsx';
 import FloatButton from '../../../components/ProfileComponents/FloatButton.jsx';
+import ContactButtons from '../../../components/ProfileComponents/ContactButtons.jsx';
 
 import { empresas } from '../../../../assets/dadosTeste.js'
 
@@ -36,16 +36,16 @@ export function Profile({navigation, route}) {
 
             <View style={cssProfile.menuButtons}>
                 <TouchableHighlight
+                activeOpacity={0.8}
+                underlayColor="#18181f"
+                onPress={() => navigation.navigate('ProfileVagas', {empresa: empresa})}
                 style={cssProfile.menuButton}>
-                    <Text style={cssProfile.menuButtonTextVagas}>Vagas</Text>
+                    <Text style={cssProfile.menuButtonTextInactive}>Vagas</Text>
                 </TouchableHighlight>
 
                 <TouchableHighlight
-                activeOpacity={0.8}
-                underlayColor="#18181f"
-                onPress={() => navigation.navigate('EditProfile', {empresa: empresa})}
                 style={cssProfile.menuButton}>
-                    <Text style={cssProfile.menuButtonTextEdit}>Editar Perfil</Text>
+                    <Text style={cssProfile.menuButtonTextActive}>Perfil</Text>
                 </TouchableHighlight>
             </View>
 
@@ -61,21 +61,25 @@ export function Profile({navigation, route}) {
                 height: "100%",
                 paddingHorizontal: 5}}
             >
+                <ContactButtons
+                types={["phone", "email", "site"]}
+                phone={empresa.telefone}
+                email={empresa.email}
+                site={empresa.site}/>
 
-                {empresa.vagas.map((vaga) => {
-                    return (
-                        <Vaga
-                        key={vaga.id}
-                        title={vaga.nome}
-                        areas={vaga.areas}
-                        salary={vaga.salario}/>
-                    )
-                })}
+                <View style={{width: '100%', flexDirection: 'row', justifyContent: 'center', marginTop:18}}>
+                    <Ionicons name="md-location-sharp" size={20} color="#3f3f46" />
+                    <Text style={{color:'#a1a1aa', marginLeft:5}}>
+                        {empresa.localizacao}
+                    </Text>
+                </View>
 
             </ScrollView>
 
-            {/* Botão de criar nova vaga */}
-            <FloatButton buttonType='create'/>
+            {/* Botão de editar */}
+            <FloatButton
+            buttonType='edit'
+            onPress={() => navigation.navigate('EditProfile', {empresa: empresa})}/>
 
         </View>
     );

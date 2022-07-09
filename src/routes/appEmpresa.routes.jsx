@@ -23,6 +23,7 @@ export function AppEmpresaRoutes() {
             initialRouteName="EnterpriseProfile"
             screenOptions={{
                 headerShown: false,
+                tabBarHideOnKeyboard: true,
                 tabBarActiveTintColor: '#FD2A7B',
                 tabBarInactiveTintColor: '#FFF',
                 tabBarShowLabel: false,
