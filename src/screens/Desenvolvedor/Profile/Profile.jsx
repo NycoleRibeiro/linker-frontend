@@ -16,10 +16,20 @@ import { RFPercentage } from "react-native-responsive-fontsize";
 
 import { desenvolvedores } from '../../../../assets/dadosTeste.js'
 
+//dados para teste, será substituido por dados do banco
+const dev = desenvolvedores[0];
+
+//lista de botoes de contato
+const contactButtons = ["whatsapp", "email"]
+if (dev.linkedin !== "") {
+    contactButtons.push("linkedin")
+} if (dev.github !== "") {
+    contactButtons.push("github")
+}
+
 export function Profile({navigation, route}) {
 
     //dados para teste, será substituido por dados do banco
-    const dev = desenvolvedores[0];
     if (route.params) {
         const dev = route.params.dev;
     }
@@ -48,7 +58,7 @@ export function Profile({navigation, route}) {
                 paddingHorizontal: 5}}
             >
                 <ContactButtons
-                types={["whatsapp", "email", "linkedin", "github"]}
+                types={contactButtons}
                 phone={dev.telefone}
                 email={dev.email}
                 linkedin={dev.linkedin}
