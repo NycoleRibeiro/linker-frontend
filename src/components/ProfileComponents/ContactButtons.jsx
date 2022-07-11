@@ -22,6 +22,16 @@ export default function ContactButtons(props) {
             </TouchableHighlight>
             }
 
+            {props.types.includes('whatsapp') &&
+            <TouchableHighlight
+            activeOpacity={0.8}
+            underlayColor="#18181f"
+            onPress={() => Linking.openURL(`https://api.whatsapp.com/send?phone=${props.phone}`)}
+            style={css.button}>
+                <FontAwesome5 name="whatsapp" style={css.buttonIcon} />
+            </TouchableHighlight>
+            }
+
             {props.types.includes('email') &&
             <TouchableHighlight
             activeOpacity={0.8}
@@ -43,6 +53,26 @@ export default function ContactButtons(props) {
 
                 <FontAwesome5 name="globe" style={css.buttonIcon} />
 
+            </TouchableHighlight>
+            }
+
+            {props.types.includes('linkedin') &&
+            <TouchableHighlight
+            activeOpacity={0.8}
+            underlayColor="#18181f"
+            onPress={() => Linking.openURL(`${props.linkedin}`)}
+            style={css.button}>
+                <FontAwesome5 name="linkedin-in" style={css.buttonIcon} />
+            </TouchableHighlight>
+            }
+
+            {props.types.includes('github') &&
+            <TouchableHighlight
+            activeOpacity={0.8}
+            underlayColor="#18181f"
+            onPress={() => Linking.openURL(`${props.github}`)}
+            style={css.button}>
+                <FontAwesome5 name="github" style={css.buttonIcon} />
             </TouchableHighlight>
             }
 

@@ -7,7 +7,7 @@ import Home from '../screens/Desenvolvedor/Home/Home';
 import Explore from '../screens/Desenvolvedor/Explore/Explore';
 import Likes from '../screens/Desenvolvedor/Likes/Likes';
 import Chat from '../screens/Desenvolvedor/Chat/Chat';
-import Profile from '../screens/Desenvolvedor/Profile/Profile';
+import DeveloperProfile from './desenvolvedor/profile.routes';
 
 const { Navigator, Screen } = createBottomTabNavigator();
 const css = StyleSheet.create({
@@ -20,7 +20,7 @@ const css = StyleSheet.create({
 export function AppDesenvolvedorRoutes() {
     return (
         <Navigator
-            initialRouteName="Profile"
+            initialRouteName="DeveloperProfile"
             screenOptions={{
                 headerShown: false,
                 tabBarActiveTintColor: '#FD2A7B',
@@ -86,8 +86,8 @@ export function AppDesenvolvedorRoutes() {
                 }}/>
 
             <Screen
-                name="Profile"
-                component={Profile}
+                name="DeveloperProfile"
+                component={DeveloperProfile}
                 options={{
                     tabBarLabel: 'Perfil',
                     tabBarIcon: ({ focused }) => (

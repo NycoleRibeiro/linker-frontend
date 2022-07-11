@@ -78,3 +78,22 @@ export const empresas = [
     },
 ]
 
+export const desenvolvedores = [
+    {
+        id: 1,
+        nome: 'Nycole Ribeiro',
+        bio: "If I don't have the skill, give me a few days",
+        imagens: ["https://github.com/NycoleRibeiro.png"],
+        nascimento: {dia: '19', mes: 'Julho', ano: '1999'},
+        localizacao: 'Rio Grande, RS',
+        formacao: 'Sistemas de Informação | FURG',
+        telefone: '+5553991147808',
+        email: 'rpnyck@gmail.com',
+        linkedin: 'https://www.linkedin.com/in/nycoleribeiro/',
+        github: 'https://github.com/NycoleRibeiro',
+        hardSkills: ['HTML', 'CSS', 'JavaScript', 'React Native', 'PHP', 'UI e UX Design', 'Python', 'Inglês', 'MySQL'],
+        softSkills: ['Aprendizado Rápido', 'Pensamento Lógico e Criativo', 'Mente Aberta e Versátil', 'Capacidade de Planejamento', 'Organização Pessoal e Profissional'],
+        experiencia: '• Designer Gráfico | Petrova Gráfica Rápida',
+        certificacoes: [],
+    }
+]
