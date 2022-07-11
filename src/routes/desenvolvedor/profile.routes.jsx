@@ -1,6 +1,7 @@
 import { createStackNavigator } from '@react-navigation/stack';
 
 import Profile from '../../screens/Desenvolvedor/Profile/Profile';
+import EditProfile from '../../screens/Desenvolvedor/Profile/EditProfile';
 
 const { Navigator, Screen } = createStackNavigator();
 
@@ -19,6 +20,10 @@ export function DeveloperProfile() {
             component={Profile}
             />
 
+            <Screen
+            name="EditProfile"
+            component={EditProfile}
+            />
 
         </Navigator>
     );
