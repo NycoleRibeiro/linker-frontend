@@ -14,10 +14,18 @@ import ContactButtons from '../../../components/ProfileComponents/ContactButtons
 
 import { empresas } from '../../../../assets/dadosTeste.js'
 
+//dados para teste, será substituido por dados do banco
+const empresa = empresas[0];
+
+//lista de botoes de contato
+const contactButtons = ["phone", "email"]
+if (empresa.site !== "") {
+    contactButtons.push("site")
+}
+
 export function Profile({navigation, route}) {
 
     //dados para teste, será substituido por dados do banco
-    const empresa = empresas[0];
     if (route.params) {
         const empresa = route.params.empresa;
     }
@@ -62,7 +70,7 @@ export function Profile({navigation, route}) {
                 paddingHorizontal: 5}}
             >
                 <ContactButtons
-                types={["phone", "email", "site"]}
+                types={contactButtons}
                 phone={empresa.telefone}
                 email={empresa.email}
                 site={empresa.site}/>
