@@ -6,13 +6,15 @@ import { View,
 from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { RFPercentage } from "react-native-responsive-fontsize";
 
 import { css } from './Css.js';
 import HeaderInfo from '../../../components/ProfileComponents/HeaderInfo.jsx';
 import AppHeader from '../../../components/AppHeader.jsx';
 import FloatButton from '../../../components/ProfileComponents/FloatButton.jsx';
 import ContactButtons from '../../../components/ProfileComponents/ContactButtons.jsx';
-import { RFPercentage } from "react-native-responsive-fontsize";
+import Certificate from '../../../components/ProfileComponents/Certificate.jsx';
 
 import { desenvolvedores } from '../../../../assets/dadosTeste.js'
 
@@ -171,9 +173,59 @@ export function Profile({navigation, route}) {
                 </Text>
                 </>}
 
-                {dev.certificacoes.length > 0 &&
+                {dev.certificacoes.length >= 0 &&
                 <>
-                <Text style={css.title}>Certificações</Text>
+                    <TouchableHighlight
+                    activeOpacity={0.8}
+                    underlayColor="#000"
+                    onPress={() => {}}
+                    style={{
+                        width: "100%",
+                        flexDirection: "row",
+                        backgroundColor: '#1c1c20',
+                        paddingHorizontal: 10,
+                        marginTop: 5,
+                        marginBottom: 5,
+                        alignItems: "center",
+                        justifyContent: "center", }}
+                    >
+                        <>
+                        <MaterialCommunityIcons
+                        name="dots-grid"
+                        size={28}
+                        color="#52525b"
+                        style={{
+                            position: "absolute",
+                            left: 15,
+                        }}
+                        />
+                        <Text style={{
+                            paddingVertical: 10,
+                            fontSize: RFPercentage(2),
+                            fontFamily: 'Inter_600SemiBold',
+                            textTransform: 'uppercase',
+                            color: '#f4f4f5',
+                        }}>
+                            Certificações
+                        </Text>
+                        </>
+                    </TouchableHighlight>
+
+                    {/* ScrollView Horizontal */}
+                    <ScrollView
+                    horizontal={true}
+                    >
+                        {dev.certificacoes.map((cert, index) => (
+                            <Certificate
+                            key={index}
+                            title={cert.title}
+                            image={cert.image}
+                            />
+                        ))}
+
+
+                    </ScrollView>
+
                 </>}
 
 
