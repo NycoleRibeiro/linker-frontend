@@ -61,7 +61,7 @@ export function Profile({navigation, route}) {
 
 
         if (!result.cancelled) {
-            // Se não cancelado, adiciona a imagem no array
+            // Se não cancelado, adiciona a imagem no state
             setCertificateImage(result.uri);
             console.log("Imagem cadastrada");
         }
@@ -314,7 +314,7 @@ export function Profile({navigation, route}) {
             buttonType='edit'
             onPress={() => navigation.navigate('EditProfile', {dev: dev})}/>
 
-            {/* Botões de opção da vaga */}
+            {/* Botões de opção do certificado */}
             {OptionsModalShown && (
             <OptionsModal
             title={'Certificações'}
