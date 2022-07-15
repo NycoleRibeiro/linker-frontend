@@ -1,13 +1,17 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import { View,
         Text,
-        Image,}
+        Image,
+        TouchableHighlight,}
 from 'react-native';
 import { RFPercentage } from "react-native-responsive-fontsize";
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 export default function Certificate(props) {
     return (
-        <View
+        <TouchableHighlight
+        onPress={props.onPress}
+        underlayColor="#18181b"
         style={{
             width: 250,
             height: 150,
@@ -17,6 +21,7 @@ export default function Certificate(props) {
             overflow: 'hidden',
         }}
         >
+            <>
             <Image
             source={{uri: props.image}}
             style={{
@@ -46,7 +51,17 @@ export default function Certificate(props) {
                 >
                     {props.title}
                 </Text>
+
+                <MaterialCommunityIcons
+                name="dots-grid"
+                size={28}
+                color="#A1A1AA"
+                style={{
+                    position: 'absolute',
+                    left: 5,
+                }}/>
             </View>
-        </View>
+            </>
+        </TouchableHighlight>
     )
 }
