@@ -95,9 +95,9 @@ export const desenvolvedores = [
         softSkills: ['Aprendizado Rápido', 'Pensamento Lógico e Criativo', 'Mente Aberta e Versátil', 'Capacidade de Planejamento', 'Organização Pessoal e Profissional'],
         experiencia: '• Designer Gráfico | Petrova Gráfica Rápida',
         certificacoes: [
-            {title: 'UX/UI Design', image: 'https://marketplace.canva.com/EAE52XadGp0/1/0/1600w/canva-certificado-de-conclus%C3%A3o-de-curso-livre-monocrom%C3%A1tico-UrLmdESIErE.jpg'},
-            {title: 'Figma', image: 'https://uploads-ssl.webflow.com/61cc54ab99085be9e38d2e16/627e5de66574490ac6c18f3e_Modelo-Certificado-1.jpg'},
-            {title: 'React Native', image: 'https://img.freepik.com/vetores-gratis/modelo-de-design-de-certificado-preto-e-dourado_8830-548.jpg?w=2000'},
-            {title: 'Design Gráfico', image: 'https://uploads-ssl.webflow.com/61cc54ab99085be9e38d2e16/627e5de66574490ac6c18f3e_Modelo-Certificado-1.jpg'},],
+            {title: 'UX/UI Design', image: 'https://marketplace.canva.com/EAE52XadGp0/1/0/1600w/canva-certificado-de-conclus%C3%A3o-de-curso-livre-monocrom%C3%A1tico-UrLmdESIErE.jpg', id: 11},
+            {title: 'Figma', image: 'https://uploads-ssl.webflow.com/61cc54ab99085be9e38d2e16/627e5de66574490ac6c18f3e_Modelo-Certificado-1.jpg', id: 12},
+            {title: 'React Native', image: 'https://img.freepik.com/vetores-gratis/modelo-de-design-de-certificado-preto-e-dourado_8830-548.jpg?w=2000', id: 13},
+            {title: 'Design Gráfico', image: 'https://uploads-ssl.webflow.com/61cc54ab99085be9e38d2e16/627e5de66574490ac6c18f3e_Modelo-Certificado-1.jpg', id:14},],
     }
 ]
