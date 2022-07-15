@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import { View,
         Text,
         ScrollView,
@@ -11,7 +11,7 @@ import Vaga from '../../../components/Vagas/Vaga.jsx';
 import HeaderInfo from '../../../components/ProfileComponents/HeaderInfo.jsx';
 import AppHeader from '../../../components/AppHeader.jsx';
 import FloatButton from '../../../components/ProfileComponents/FloatButton.jsx';
-import VagaOptions from '../../../components/Vagas/VagaOptions.jsx';
+import OptionsModal from '../../../components/ProfileComponents/OptionsModal.jsx';
 
 import { empresas } from '../../../../assets/dadosTeste.js'
 
@@ -23,7 +23,7 @@ export function ProfileVagas({navigation, route}) {
         const empresa = route.params.empresa;
     }
 
-    const [vagasOptionsShown, setVagasOptionsShown] = useState(false);
+    const [OptionsModalShown, setOptionsModalShown] = useState(false);
     const [selectedVaga, setSelectedVaga] = useState(null);
 
 
@@ -47,7 +47,7 @@ export function ProfileVagas({navigation, route}) {
                     /* REMOVER A VAGA COM ID {selectedVaga.id} do banco de dados */
 
                     // fecha o modal
-                    setVagasOptionsShown(false);
+                    setOptionsModalShown(false);
                 }}
             ],
             {cancelable: false}
@@ -114,7 +114,7 @@ export function ProfileVagas({navigation, route}) {
                         areas={vaga.areas}
                         salary={vaga.salario}
                         openOptions={() => {
-                            setVagasOptionsShown(true)
+                            setOptionsModalShown(true)
                             // Atribui o id da vaga clicada para o estado
                             setSelectedVaga(vaga)
                         }}
@@ -131,10 +131,11 @@ export function ProfileVagas({navigation, route}) {
             />
 
             {/* Botões de opção da vaga */}
-            {vagasOptionsShown && (
-            <VagaOptions
+            {OptionsModalShown && (
+            <OptionsModal
             title={'Opções da Vaga'}
-            close={() => setVagasOptionsShown(false)}
+            buttons={['editar', 'excluir', 'detalhes']}
+            close={() => setOptionsModalShown(false)}
             onPressEdit={editVaga}
             onPressDelete={deleteVaga}
             onPressDetail={vagaDetails}
