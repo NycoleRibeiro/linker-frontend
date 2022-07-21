@@ -14,7 +14,12 @@ export default function VagaView(props) {
     const vaga = props.vaga;
     const empresa = props.empresa;
 
-    const [comprimento, setComprimento] = useState(30);
+    var comprimentoInicial = 30;
+    if (props.state == 1) {
+        comprimentoInicial = 100;
+    }
+
+    const [comprimento, setComprimento] = useState(comprimentoInicial);
 
     const toggleComprimento = () => {
         if (comprimento === 100) {
