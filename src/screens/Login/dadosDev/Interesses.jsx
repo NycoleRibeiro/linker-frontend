@@ -93,8 +93,6 @@ function Interesses({navigation, route}) {
     );
 }
 
-export default Interesses;
-
 
 const styles = StyleSheet.create({
     interestsContainer: {
@@ -129,3 +127,6 @@ const styles = StyleSheet.create({
         fontFamily: 'Inter_400Regular',
     }
 });
+
+export default Interesses;
+

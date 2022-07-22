@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+nn
+lmport React, { useState } from 'react';
 import {View,
         Text,
         StyleSheet,
@@ -48,6 +49,22 @@ export default function TagsInput(props) {
             />
 
             {/* Tags */}
+            <View style={css.tags}>
+                {tags.map((tag, index) => (
+                    <TouchableHighlight
+                    style={css.tag}
+                    underlayColor="#fd2a7b"
+                    onPress={() => removeTag(tag)}
+                    >
+                        <>
+                        <Text key={index} style={css.tagText}>
+                            {tag}
+                        </Text>
+                        <Ionicons name="close" style={css.tagIcon} />
+                        </>
+                    </TouchableHighlight>
+                ))}
+            </View>
 
         </>
     )
