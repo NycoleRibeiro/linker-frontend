@@ -40,7 +40,7 @@ export default function VagaView(props) {
                 justifyContent: 'center',
             }}>
                 <Image
-                source={{uri: empresa.imagens[1]}}
+                source={empresa.imagens[1] ? {uri: empresa.imagens[1]} : {uri: empresa.imagens[0]}}
                 style={css.img}/>
 
                 <View style={css.areasTags}>
