@@ -111,12 +111,13 @@ export const desenvolvedores = [
             image: 'https://uploads-ssl.webflow.com/61cc54ab99085be9e38d2e16/627e5de66574490ac6c18f3e_Modelo-Certificado-1.jpg',
             link: 'https://marketplace.canva.com/EAE52XadGp0/1/0/1600w/canva-certificado-de-conclus%C3%A3o-de-curso-livre-monocrom%C3%A1tico-UrLmdESIErE.jpg',
             id:14},],
+        interesses: ['Front-end', 'Desenvolvimento Web']
     },
     {
         id: 2,
-        nome: 'Sandy Junior',
+        nome: 'Junior da Sandy',
         bio: "Abre a vaga, mariquinha",
-        imagens: ["https://www.pixelpink.com.br/wp-content/uploads/2019/03/Nova-Imagem-13.png", "https://conteudo.imguol.com.br/c/splash/f0/2021/12/09/sandy-lanca-a-musica-universo-reduzido-1639068743014_v2_3x4.png"],
+        imagens: ["https://www.pixelpink.com.br/wp-content/uploads/2019/03/Nova-Imagem-13.png"],
         nascimento: {dia: '19', mes: 'Julho', ano: '1999'},
         localizacao: 'São Paulo, SP',
         formacao: 'Sistemas de Informação | FURG',
@@ -144,12 +145,13 @@ export const desenvolvedores = [
             image: 'https://uploads-ssl.webflow.com/61cc54ab99085be9e38d2e16/627e5de66574490ac6c18f3e_Modelo-Certificado-1.jpg',
             link: 'https://marketplace.canva.com/EAE52XadGp0/1/0/1600w/canva-certificado-de-conclus%C3%A3o-de-curso-livre-monocrom%C3%A1tico-UrLmdESIErE.jpg',
             id:14},],
+        interesses: ['Front-end', 'Desenvolvimento Web']
     },
     {
         id: 3,
-        nome: 'Xuxa Meneguel',
+        nome: 'Vyni Meneguel',
         bio: "A de Assembly, B de Ballerina, C de Cobol",
-        imagens: ["https://i.ytimg.com/vi/i84EMV3Q1ss/hqdefault.jpg", "https://i.ytimg.com/vi/8P7MsLDZDwI/hqdefault.jpg"],
+        imagens: ["https://s2.glbimg.com/VhXDLRTVRKHAbrMq9Uxq_oZOi1Y=/620x620/top/e.glbimg.com/og/ed/f/original/2022/03/17/image_TwKV3pL.png"],
         nascimento: {dia: '19', mes: 'Julho', ano: '1999'},
         localizacao: 'São Paulo, SP',
         formacao: 'Sistemas de Informação | FURG',
@@ -177,5 +179,6 @@ export const desenvolvedores = [
             image: 'https://uploads-ssl.webflow.com/61cc54ab99085be9e38d2e16/627e5de66574490ac6c18f3e_Modelo-Certificado-1.jpg',
             link: 'https://marketplace.canva.com/EAE52XadGp0/1/0/1600w/canva-certificado-de-conclus%C3%A3o-de-curso-livre-monocrom%C3%A1tico-UrLmdESIErE.jpg',
             id:14},],
+        interesses: ['Front-end', 'Desenvolvimento Web']
     },
 ]
