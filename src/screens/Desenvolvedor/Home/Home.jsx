@@ -10,6 +10,8 @@ import HomeButtons from '../../../components/Button/HomeButtons'
 
 // Dados teste... remover após implementar banco de dados
 import { empresas } from '../../../../assets/dadosTeste.js'
+import { desenvolvedores } from '../../../../assets/dadosTeste.js'
+
 
 export function Home() {
     //dados para teste, será substituido por dados do banco
@@ -18,7 +20,11 @@ export function Home() {
     const [vagasRow, setVagasRow] = useState([vagas[0], vagas[1], vagas[2], vagas[3]]);
     const [currentVaga, setCurrentVaga] = useState(vagas[1])
 
+    // Requisitos do desenvolvedor (requisitos em comum com os pedidos na vaga ficarão de outra cor)
+    const req2Match = desenvolvedores[0].hardSkills
+
     const returnVaga = () => {
+        // ao clicar no botão (return), retorna para a vaga anterior
         let index = vagasRow.indexOf(currentVaga);
         if (index > 0) {
             setCurrentVaga(vagasRow[index - 1]);
@@ -26,6 +32,7 @@ export function Home() {
     }
 
     const passVaga = () => {
+        // ao clicar no botão (x) passa para a próxima vaga
         let index = vagasRow.indexOf(currentVaga);
         if (index < vagasRow.length - 1) {
             setCurrentVaga(vagasRow[index + 1]);
@@ -46,7 +53,9 @@ export function Home() {
             <VagaView
             vaga={currentVaga}
             empresa={empresa}
-            state={1}/>
+            state={1}
+            requisitos={req2Match}
+            />
 
             <HomeButtons
             onPressReturn={returnVaga}

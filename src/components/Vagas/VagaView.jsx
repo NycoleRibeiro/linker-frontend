@@ -80,7 +80,14 @@ export default function VagaView(props) {
                 style={css.requisitos}>
                     {vaga.requisitosObrigatorios.map((requisito, index) => {
                         return (
-                            <View key={index} style={css.requisito}>
+                            // Se o requisito for igual ao requisito do desenvolvedor, a tag ficará de outra cor
+                            <View
+                            key={index}
+                            style={
+                            props.requisitos.includes(requisito)
+                            ? css.requisitoMatch
+                            : css.requisito
+                            }>
                                 <Text style={css.requisitoText}>{requisito}</Text>
                             </View>
                         )
@@ -94,7 +101,14 @@ export default function VagaView(props) {
                     style={css.requisitos}>
                         {vaga.requisitosDesejaveis.map((requisito, index) => {
                             return (
-                                <View key={index} style={css.requisito}>
+                                // Se o requisito for igual ao requisito do desenvolvedor, a tag ficará de outra cor
+                                <View
+                                key={index}
+                                style={
+                                props.requisitos.includes(requisito)
+                                ? css.requisitoMatch
+                                : css.requisito
+                                }>
                                     <Text style={css.requisitoText}>{requisito}</Text>
                                 </View>
                             )
@@ -228,6 +242,14 @@ const css = StyleSheet.create({
     },
     requisito: {
         backgroundColor: '#27272A',
+        borderRadius: 10,
+        paddingHorizontal: 12,
+        paddingVertical: 2,
+        marginRight: 5,
+        marginBottom: 5,
+    },
+    requisitoMatch: {
+        backgroundColor: '#FE4072',
         borderRadius: 10,
         paddingHorizontal: 12,
         paddingVertical: 2,
