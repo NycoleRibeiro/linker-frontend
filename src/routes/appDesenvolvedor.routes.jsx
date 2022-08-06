@@ -20,7 +20,7 @@ const css = StyleSheet.create({
 export function AppDesenvolvedorRoutes() {
     return (
         <Navigator
-            initialRouteName="DeveloperProfile"
+            initialRouteName="Home"
             screenOptions={{
                 headerShown: false,
                 tabBarActiveTintColor: '#FD2A7B',

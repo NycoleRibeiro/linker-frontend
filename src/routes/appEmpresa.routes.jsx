@@ -20,7 +20,7 @@ const css = StyleSheet.create({
 export function AppEmpresaRoutes() {
     return (
         <Navigator
-            initialRouteName="EnterpriseProfile"
+            initialRouteName="Home"
             screenOptions={{
                 headerShown: false,
                 tabBarHideOnKeyboard: true,

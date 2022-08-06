@@ -14,7 +14,12 @@ export default function VagaView(props) {
     const vaga = props.vaga;
     const empresa = props.empresa;
 
-    const [comprimento, setComprimento] = useState(30);
+    var comprimentoInicial = 30;
+    if (props.state == 1) {
+        comprimentoInicial = 100;
+    }
+
+    const [comprimento, setComprimento] = useState(comprimentoInicial);
 
     const toggleComprimento = () => {
         if (comprimento === 100) {
@@ -35,7 +40,7 @@ export default function VagaView(props) {
                 justifyContent: 'center',
             }}>
                 <Image
-                source={{uri: empresa.imagens[1]}}
+                source={empresa.imagens[1] ? {uri: empresa.imagens[1]} : {uri: empresa.imagens[0]}}
                 style={css.img}/>
 
                 <View style={css.areasTags}>
@@ -75,7 +80,14 @@ export default function VagaView(props) {
                 style={css.requisitos}>
                     {vaga.requisitosObrigatorios.map((requisito, index) => {
                         return (
-                            <View key={index} style={css.requisito}>
+                            // Se o requisito for igual ao requisito do desenvolvedor, a tag ficará de outra cor
+                            <View
+                            key={index}
+                            style={
+                            props.requisitos.includes(requisito)
+                            ? css.requisitoMatch
+                            : css.requisito
+                            }>
                                 <Text style={css.requisitoText}>{requisito}</Text>
                             </View>
                         )
@@ -89,7 +101,14 @@ export default function VagaView(props) {
                     style={css.requisitos}>
                         {vaga.requisitosDesejaveis.map((requisito, index) => {
                             return (
-                                <View key={index} style={css.requisito}>
+                                // Se o requisito for igual ao requisito do desenvolvedor, a tag ficará de outra cor
+                                <View
+                                key={index}
+                                style={
+                                props.requisitos.includes(requisito)
+                                ? css.requisitoMatch
+                                : css.requisito
+                                }>
                                     <Text style={css.requisitoText}>{requisito}</Text>
                                 </View>
                             )
@@ -223,6 +242,14 @@ const css = StyleSheet.create({
     },
     requisito: {
         backgroundColor: '#27272A',
+        borderRadius: 10,
+        paddingHorizontal: 12,
+        paddingVertical: 2,
+        marginRight: 5,
+        marginBottom: 5,
+    },
+    requisitoMatch: {
+        backgroundColor: '#FE4072',
         borderRadius: 10,
         paddingHorizontal: 12,
         paddingVertical: 2,
