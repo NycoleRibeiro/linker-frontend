@@ -3,6 +3,7 @@ import { View,
         Text,
         ScrollView,
         Image,
+        TouchableHighlight,
     }
 from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
@@ -27,6 +28,20 @@ if (dev.linkedin !== "") {
 }
 
 export function DevView(props) {
+
+    // dados teste para exibir perguntas e respontas
+    const perguntas = [
+        {
+            pergunta: "Quais suas maiores qualidades?",
+            resposta: "Organização e vontade de aprender"
+        },
+        {
+            pergunta: "Quais suas fraquezas?",
+            resposta: "Memória ruim"
+        },
+
+    ]
+
     const dev = props.dev;
 
     var comprimentoInicial = 30;
@@ -35,6 +50,7 @@ export function DevView(props) {
     }
 
     const [comprimento, setComprimento] = useState(comprimentoInicial);
+    const [screen, setScreen] = useState('curriculo');
 
     const toggleComprimento = () => {
         if (comprimento === 100) {
@@ -80,6 +96,57 @@ export function DevView(props) {
                 </View>
             </View>
 
+            {/* Botões de 'navegação' entre o currículo e teste */}
+            <View style={{
+                width: '100%',
+                flexDirection: 'row',
+            }}>
+                <TouchableHighlight
+                activeOpacity={0.8}
+                underlayColor="#18181f"
+                onPress={() => setScreen('curriculo')}
+                style={{
+                    width: '50%',
+                    backgroundColor: '#18181f',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    paddingVertical: 5,
+                }}>
+                    <Text
+                    style={{
+                        color: screen == 'curriculo' ? '#fe4072' : '#A1A1AA',
+                        fontSize: RFPercentage(1.5),
+                        fontFamily: 'Inter_600SemiBold',
+                        textTransform: 'uppercase',
+                    }}>
+                        Currículo
+                    </Text>
+                </TouchableHighlight>
+
+                <TouchableHighlight
+                activeOpacity={0.8}
+                underlayColor="#18181f"
+                onPress={() => setScreen('teste')}
+                style={{
+                    width: '50%',
+                    backgroundColor: '#18181f',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    paddingVertical: 5,
+                }}>
+                    <Text
+                    style={{
+                        color: screen == 'teste' ? '#fe4072' : '#A1A1AA',
+                        fontSize: RFPercentage(1.5),
+                        fontFamily: 'Inter_600SemiBold',
+                        textTransform: 'uppercase',
+                    }}>
+                        Teste
+                    </Text>
+                </TouchableHighlight>
+            </View>
+
+            {/* Currículo */}
             <ScrollView
             overScrollMode='never'
             showsVerticalScrollIndicator
@@ -87,10 +154,16 @@ export function DevView(props) {
                 justifyContent: 'center',
                 alignItems: 'center',
             }}
-            style={{
+            // Se o screen for 'teste', fica display none
+            style={screen == 'teste'
+            ? {
+                display: 'none',
+            }
+            : {
                 width: "100%",
                 height: "100%",
-                paddingHorizontal: 5}}
+                paddingHorizontal: 5
+            }}
             >
                 <ContactButtons
                 types={contactButtons}
@@ -228,6 +301,61 @@ export function DevView(props) {
                 </>
                 }
 
+            </ScrollView>
+
+            {/* Teste */}
+            <ScrollView
+            overScrollMode='never'
+            showsVerticalScrollIndicator
+            contentContainerStyle={{
+                justifyContent: 'center',
+                alignItems: 'center',
+            }}
+            // Se o screen for 'curriculo', fica display none
+            style={screen == 'curriculo'
+            ? {
+                display: 'none',
+            }
+            : {
+                width: "100%",
+                height: "100%",
+                paddingHorizontal: 5
+            }}
+            >
+                {perguntas.map((pergunta, index) => (
+                    <View key={index} style={{
+                        width: "100%",
+                        marginTop:20,
+                        alignItems: "center",
+                        justifyContent: "center",
+                    }}>
+                        <Text
+                        style={{
+                            color:'#fff',
+                            fontFamily: 'Inter_600SemiBold',
+                            fontSize: RFPercentage(1.8),
+                            marginBottom:5,
+                        }}>
+                            {pergunta.pergunta}
+                        </Text>
+                        <Text
+                        style={{
+                            width: "100%",
+                            color:'#a1a1aa',
+                            fontSize: RFPercentage(1.8),
+                            fontFamily: 'Inter_400Regular',
+                            backgroundColor: '#18181f',
+                            //backgroundColor: 'red',
+                            paddingVertical: 10,
+                            borderRadius: 10,
+                            borderWidth: 0.5,
+                            borderColor: '#3f3f46',
+                            textAlign: "center",
+                        }}>
+                            {pergunta.resposta}
+                        </Text>
+                    </View>
+                ))}
             </ScrollView>
         </View>
     );
