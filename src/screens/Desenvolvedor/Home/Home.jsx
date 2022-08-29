@@ -42,7 +42,8 @@ export function Home() {
     const okVaga = () => {
         // o teste da vaga vai ser enviado pra página de likes
         // tela inicial passa para a proxima vaga
-        passVaga()
+        console.log(currentVaga);
+        // passVaga()
     }
 
     return (
