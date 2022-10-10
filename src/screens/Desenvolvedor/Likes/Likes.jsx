@@ -9,6 +9,7 @@ import { css } from './Css.js';
 
 import AppHeader from '../../../components/AppHeader.jsx';
 import VagaView from '../../../components/Vagas/VagaView'
+import TestView from '../../../components/Vagas/TestView'
 
 // Dados teste... remover após implementar banco de dados
 import { empresas } from '../../../../assets/dadosTeste.js'
@@ -122,8 +123,8 @@ export function Likes() {
                     <Text style={{color: '#fff', fontSize: 20}}>VOLTAR</Text>
                 </TouchableHighlight>
 
-                <TestScreen
-                vaga={pendentTests[currentVaga]}
+                <TestView
+                perguntasTeste={currentVaga.perguntasTeste}
                 setShowTest={setShowTest}/>
             </View>
             }
