@@ -21,6 +21,7 @@ export const empresas = [
                 beneficios: 'Vale transporte',
                 salario: '11.139,00',
                 salarioNegociavel: true,
+                perguntasTeste: ["Quais suas maiores qualidades?", "Quais suas fraquezas?", "Por que você quer trabalhar aqui?"],
             },
             {
                 id: 2,
@@ -34,6 +35,7 @@ export const empresas = [
                 beneficios: 'Vale Refeição • Vale Alimentação • Plano de Saúde • Plano Odontológico • Academia • Auxílio Medicamento',
                 salario: '8.000,00',
                 salarioNegociavel: false,
+                perguntasTeste: ["Por que você quer trabalhar aqui?", "Quais suas maiores qualidades?", "Quais suas fraquezas?"],
             },
             {
                 id: 3,
@@ -47,6 +49,7 @@ export const empresas = [
                 beneficios: '',
                 salario: '8.000,00',
                 salarioNegociavel: false,
+                perguntasTeste: ["Por que você quer trabalhar aqui?", "Quais suas maiores qualidades?", "Quais suas fraquezas?"],
             },
             {
                 id: 4,
@@ -60,6 +63,7 @@ export const empresas = [
                 beneficios: 'Vale transporte',
                 salario: '8.000,00',
                 salarioNegociavel: false,
+                perguntasTeste: ["Por que você quer trabalhar aqui?", "Quais suas maiores qualidades?", "Quais suas fraquezas?"],
             },
             {
                 id: 5,
@@ -73,6 +77,7 @@ export const empresas = [
                 beneficios: 'Vale transporte',
                 salario: '8.000,00',
                 salarioNegociavel: false,
+                perguntasTeste: ["Por que você quer trabalhar aqui?", "Quais suas maiores qualidades?", "Quais suas fraquezas?"],
             }
         ]
     },
