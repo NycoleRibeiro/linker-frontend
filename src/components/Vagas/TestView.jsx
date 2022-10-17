@@ -2,7 +2,8 @@ import React, {useState} from 'react';
 import { View,
         Text,
         ScrollView,
-        TextInput
+        TextInput,
+        TouchableHighlight,
     }
 from 'react-native';
 
@@ -12,12 +13,25 @@ import { StyleSheet } from "react-native";
 
 export function DevView(props) {
 
-    // dados teste para exibir perguntas
+    // dados teste com lista de perguntas
     const teste = props.perguntasTeste
 
-    // guarda o valor do input
+    // estado para armazenar as respostas do teste
+    const [respostas, setRespostas] = useState([])
+
+    // guarda o valor do input atual
     const [inputValue, setInputValue] = useState('')
-    console.log(inputValue)
+
+    // Salva as respostas no banco de dados e remove a vaga da lista de pendentes
+    function saveAnswers() {
+        console.log(respostas)
+        // salvar respostas no banco de dados
+
+        // remover vaga da lista de pendentes
+
+        // fecha o modal de teste
+        props.setShowTest(false)
+    }
 
     return (
         <View style={css.container}>
@@ -36,54 +50,92 @@ export function DevView(props) {
                 paddingHorizontal: 5
             }}
             >
-                {teste.map((pergunta, index) => (
-                    <View key={index} style={{
-                        width: "100%",
-                        marginTop:20,
-                        alignItems: "center",
-                        justifyContent: "center",
-                    }}>
-                        <Text
-                        style={{
-                            color:'#fff',
-                            fontFamily: 'Inter_600SemiBold',
-                            fontSize: RFPercentage(1.8),
-                            marginBottom:5,
-                        }}>
-                            {pergunta}
-                        </Text>
-
-
-                        {/* Input pro usuario digitar a resposta */}
-                        <TextInput
+                {/* Mostra uma pergunta e um input, ao clicar no botão continuar salva a resposta e exibe a proxima pergunta */}
+                {teste.map((pergunta, index) => {
+                    return (
+                        <View
                         style={{
                             width: "100%",
-                            marginHorizontal: 20,
-                            borderWidth: 0.8,
-                            paddingHorizontal: 10,
-                            paddingVertical: 5,
-                            marginVertical: 5,
-                            borderColor: '#FD2B7A',
-                            borderRadius: 10,
-                            fontFamily: 'Inter_400Regular',
-                            fontSize: RFPercentage(1.8),
-                            color: '#f4f4f5',
+                            marginTop:20,
+                            alignItems: "center",
+                            justifyContent: "center",
                         }}
-                        placeholder="Digite sua resposta"
-                        placeholderTextColor="#A1A1AA"
-                        value={inputValue}
-                        selectionColor="#f4f4f5"
-                        keyboardType="default"
-                        autoCapitalize="none"
-                        maxLength={100}
-                        onChangeText={text => setInputValue(text)}
-                        multiline={true}
-                        autoCorrect={false}
-                        numberOfLines={4}
-                        textAlignVertical="top"
-                        />
-                    </View>
-                ))}
+                        key={index}>
+                            <Text
+                            style={{
+                                color:'#fff',
+                                fontFamily: 'Inter_600SemiBold',
+                                fontSize: RFPercentage(1.8),
+                                marginBottom:5,
+                            }}>
+                                {pergunta}
+                            </Text>
+
+                            <TextInput
+                            style={{
+                                width: "100%",
+                                marginHorizontal: 20,
+                                borderWidth: 0.8,
+                                paddingHorizontal: 10,
+                                paddingVertical: 5,
+                                marginVertical: 5,
+                                borderColor: '#FD2B7A',
+                                borderRadius: 10,
+                                fontFamily: 'Inter_400Regular',
+                                fontSize: RFPercentage(1.8),
+                                color: '#f4f4f5',
+                            }}
+                            placeholder="Digite sua resposta"
+                            placeholderTextColor="#A1A1AA"
+                            //value={inputValue}
+                            selectionColor="#f4f4f5"
+                            keyboardType="default"
+                            autoCapitalize="none"
+                            maxLength={100}
+                            onChangeText={text => setInputValue(text)}
+                            onEndEditing={() => {
+                                // salva a resposta no estado respostas se o input não estiver vazio
+                                if (inputValue !== '') {
+                                    respostas[index] = inputValue
+                                    setInputValue('')
+                                }
+                            }}
+                            multiline={true}
+                            autoCorrect={false}
+                            numberOfLines={4}
+                            textAlignVertical="top"
+                            />
+
+                        </View>
+                    )
+                })}
+
+
+                {/* Botão para salvar as respostas */}
+                <TouchableHighlight
+                activeOpacity={0.8}
+                underlayColor="#18181f"
+                onPress={() => saveAnswers()}
+                style={{
+                    backgroundColor:'#FD2B7A',
+                    width: "100%",
+                    marginTop: 50,
+                    alignItems: "center",
+                    justifyContent: "center",
+                    borderRadius: 10,
+                    paddingVertical: 15,
+                }}
+                >
+                    <Text
+                    style={{
+                        color:'#fff',
+                        fontFamily: 'Inter_600SemiBold',
+                        fontSize: RFPercentage(1.8),
+                    }}>
+                        SALVAR
+                    </Text>
+                </TouchableHighlight>
+
             </ScrollView>
         </View>
     );
