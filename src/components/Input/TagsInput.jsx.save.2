@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import {
-    View,
-    Text,
-    StyleSheet,
-    TextInput,
-    TouchableHighlight,
-} from 'react-native';
+nn
+lmport React, { useState } from 'react';
+import {View,
+        Text,
+        StyleSheet,
+        TextInput,
+        TouchableHighlight,
+        } from 'react-native';
 import { RFPercentage } from "react-native-responsive-fontsize";
 import { Ionicons } from '@expo/vector-icons';
 
@@ -16,15 +16,11 @@ export default function TagsInput(props) {
 
 
     const addTag = (tag) => {
-        const tagsArray = tag.replace(/ /g, '').split(',').filter(Boolean);
-
-        setTags(tagsArray);
-
+        setValor([...valor, tag]);
         if (tag.slice(-1) == ',') {
             tag = tag.slice(0, -1);
+            setTags([...tags, tag]);
             setValor('');
-        } else {
-            setValor(tag);
         }
     }
 
@@ -53,6 +49,22 @@ export default function TagsInput(props) {
             />
 
             {/* Tags */}
+            <View style={css.tags}>
+                {tags.map((tag, index) => (
+                    <TouchableHighlight
+                    style={css.tag}
+                    underlayColor="#fd2a7b"
+                    onPress={() => removeTag(tag)}
+                    >
+                        <>
+                        <Text key={index} style={css.tagText}>
+                            {tag}
+                        </Text>
+                        <Ionicons name="close" style={css.tagIcon} />
+                        </>
+                    </TouchableHighlight>
+                ))}
+            </View>
 
         </>
     )

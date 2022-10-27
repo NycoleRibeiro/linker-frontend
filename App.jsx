@@ -1,16 +1,23 @@
-import React, { useCallback } from 'react';
-import { StyleSheet,
-        SafeAreaView,
-        Platform,
-        StatusBar } from 'react-native';
+import React, { useCallback, useState, useEffect } from 'react';
+import {
+  Button,
+  StyleSheet,
+  SafeAreaView,
+  Platform,
+  StatusBar,
+  View,
+} from 'react-native';
 import * as SplashScreen from 'expo-splash-screen';
-import { useFonts,
-        Inter_700Bold,
-        Inter_600SemiBold,
-        Inter_400Regular } from '@expo-google-fonts/inter';
+import {
+  useFonts,
+  Inter_700Bold,
+  Inter_600SemiBold,
+  Inter_400Regular
+} from '@expo-google-fonts/inter';
 import { NavigationContainer } from '@react-navigation/native';
-
 import { Routes } from './src/routes';
+import jwtDecode from "jwt-decode";
+import * as AuthSession from "expo-auth-session";
 
 
 export default function App() {

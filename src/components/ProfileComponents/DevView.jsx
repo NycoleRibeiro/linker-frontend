@@ -29,20 +29,11 @@ if (dev.linkedin !== "") {
 
 export function DevView(props) {
 
-    // dados teste para exibir perguntas e respontas
-    const perguntas = [
-        {
-            pergunta: "Quais suas maiores qualidades?",
-            resposta: "Organização e vontade de aprender"
-        },
-        {
-            pergunta: "Quais suas fraquezas?",
-            resposta: "Memória ruim"
-        },
-
-    ]
-
+    const perguntas = props.perguntas;
     const dev = props.dev;
+
+    console.log(dev);
+
 
     var comprimentoInicial = 30;
     if (props.state == 1) {

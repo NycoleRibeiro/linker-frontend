@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { View,
-        Text,
-        ScrollView,
-        StyleSheet,
-        Image,
-        } from 'react-native';
+import {
+    View,
+    Text,
+    ScrollView,
+    StyleSheet,
+    Image,
+} from 'react-native';
 import { RFPercentage } from "react-native-responsive-fontsize";
 import { Ionicons } from '@expo/vector-icons';
 
@@ -13,6 +14,12 @@ export default function VagaView(props) {
 
     const vaga = props.vaga;
     const empresa = props.empresa;
+
+    console.log("Estou sendo montado");
+
+    if (!vaga || !empresa) {
+        return <></>;
+    }
 
     var comprimentoInicial = 30;
     if (props.state == 1) {
@@ -29,19 +36,20 @@ export default function VagaView(props) {
         }
     }
 
+
     return (
         <View style={css.container}>
             <View
-            onStartShouldSetResponder={() => toggleComprimento()}
-            style={{
-                width: '100%',
-                height: `${comprimento}%`,
-                alignItems: 'center',
-                justifyContent: 'center',
-            }}>
+                onStartShouldSetResponder={() => toggleComprimento()}
+                style={{
+                    width: '100%',
+                    height: `${comprimento}%`,
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                }}>
                 <Image
-                source={empresa.imagens[1] ? {uri: empresa.imagens[1]} : {uri: empresa.imagens[0]}}
-                style={css.img}/>
+                    source={empresa.imagens[1] ? { uri: empresa.imagens[1] } : { uri: empresa.imagens[0] }}
+                    style={css.img} />
 
                 <View style={css.areasTags}>
                     {vaga.areas.map((area, index) => {
@@ -55,9 +63,9 @@ export default function VagaView(props) {
 
                 <View style={css.mainInfo}>
                     <Text
-                    numberOfLines={2}
-                    adjustsFontSizeToFit={true}
-                    style={css.nomeVaga}>
+                        numberOfLines={2}
+                        adjustsFontSizeToFit={true}
+                        style={css.nomeVaga}>
                         {vaga.nome}
                     </Text>
                     <Text style={css.tipoVaga}>{vaga.tipoDeVaga}</Text>
@@ -70,24 +78,24 @@ export default function VagaView(props) {
             </View>
 
             <ScrollView
-            onStartShouldSetResponder={() => Alert.alert('View Clicked...')}
-            style={css.infoContainer}>
+                onStartShouldSetResponder={() => Alert.alert('View Clicked...')}
+                style={css.infoContainer}>
                 {vaga.descricao != "" &&
-                <Text style={css.infoText}>{vaga.descricao}</Text>}
+                    <Text style={css.infoText}>{vaga.descricao}</Text>}
 
                 <Text style={css.infoTitle}>Requisitos Obrigatórios</Text>
                 <View
-                style={css.requisitos}>
+                    style={css.requisitos}>
                     {vaga.requisitosObrigatorios.map((requisito, index) => {
                         return (
                             // Se o requisito for igual ao requisito do desenvolvedor, a tag ficará de outra cor
                             <View
-                            key={index}
-                            style={
-                            props.requisitos.includes(requisito)
-                            ? css.requisitoMatch
-                            : css.requisito
-                            }>
+                                key={index}
+                                style={
+                                    props.requisitos.map(r => r.toLowerCase()).includes(requisito.toLowerCase())
+                                        ? css.requisitoMatch
+                                        : css.requisito
+                                }>
                                 <Text style={css.requisitoText}>{requisito}</Text>
                             </View>
                         )
@@ -95,39 +103,39 @@ export default function VagaView(props) {
                 </View>
 
                 {vaga.requisitosDesejaveis.length > 0 &&
-                <>
-                    <Text style={css.infoTitle}>Requisitos Opcionais</Text>
-                    <View
-                    style={css.requisitos}>
-                        {vaga.requisitosDesejaveis.map((requisito, index) => {
-                            return (
-                                // Se o requisito for igual ao requisito do desenvolvedor, a tag ficará de outra cor
-                                <View
-                                key={index}
-                                style={
-                                props.requisitos.includes(requisito)
-                                ? css.requisitoMatch
-                                : css.requisito
-                                }>
-                                    <Text style={css.requisitoText}>{requisito}</Text>
-                                </View>
-                            )
-                        })}
-                    </View>
-                </>}
+                    <>
+                        <Text style={css.infoTitle}>Requisitos Opcionais</Text>
+                        <View
+                            style={css.requisitos}>
+                            {vaga.requisitosDesejaveis.map((requisito, index) => {
+                                return (
+                                    // Se o requisito for igual ao requisito do desenvolvedor, a tag ficará de outra cor
+                                    <View
+                                        key={index}
+                                        style={
+                                            props.requisitos.map(r => r.toLowerCase()).includes(requisito.toLowerCase())
+                                                ? css.requisitoMatch
+                                                : css.requisito
+                                        }>
+                                        <Text style={css.requisitoText}>{requisito}</Text>
+                                    </View>
+                                )
+                            })}
+                        </View>
+                    </>}
 
                 <Text style={css.infoTitle}>Salário</Text>
-                <View style={{flexDirection:'row'}}>
+                <View style={{ flexDirection: 'row' }}>
                     <Text style={css.infoText}>R$ {vaga.salario}</Text>
-                    { vaga.salarioNegociavel === true &&
-                    <Text style={css.infoText}> | Salário Negociável</Text> }
+                    {vaga.salarioNegociavel === true &&
+                        <Text style={css.infoText}> | Salário Negociável</Text>}
                 </View>
 
                 {vaga.beneficios != '' &&
-                <>
-                    <Text style={css.infoTitle}>Benefícios</Text>
-                    <Text style={css.infoText}>{vaga.beneficios}</Text>
-                </>}
+                    <>
+                        <Text style={css.infoTitle}>Benefícios</Text>
+                        <Text style={css.infoText}>{vaga.beneficios}</Text>
+                    </>}
 
             </ScrollView>
 
@@ -153,6 +161,8 @@ const css = StyleSheet.create({
     img: {
         width: '100%',
         height: '100%',
+        objectFit: 'contain',
+        backgroundColor: 'white'
     },
     areasTags: {
         position: 'absolute',

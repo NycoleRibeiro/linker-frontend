@@ -14,6 +14,7 @@ import ProgressBar from '../../../components/Input/ProgressBar';
 import BackButton from '../../../components/Button/BackButton';
 import ErrorMessage from '../../../components/ErrorMessage';
 
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 function Fotos({navigation, route}) {
     const [images, setImages] = useState([]);
@@ -136,7 +137,6 @@ function Fotos({navigation, route}) {
     );
 }
 
-export default Fotos;
 
 const styles = StyleSheet.create({
     container: {
@@ -180,3 +180,5 @@ const styles = StyleSheet.create({
         height: "100%",
     },
 });
+
+export default Fotos;

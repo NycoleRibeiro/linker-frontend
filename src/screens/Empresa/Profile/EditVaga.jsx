@@ -15,6 +15,10 @@ import SimpleInput from '../../../components/Input/SimpleInput.jsx';
 import TagsInput from '../../../components/Input/TagsInput.jsx';
 import Picker from '../../../components/Input/Picker.jsx';
 import ContinuarButton from '../../../components/Button/ContinuarButton.jsx';
+import JobService from '../../../service/JobService.js';
+
+
+const jobService = JobService.getInstance();
 
 export default function CreateVaga({ navigation, route }) {
 
@@ -36,7 +40,7 @@ export default function CreateVaga({ navigation, route }) {
 
 
      // Pega as tags do input de requisitos obrigatorios
-     const updateTagsRO = (tags) => {
+    const updateTagsRO = (tags) => {
         setRequisitosObrigatorios(tags);
     }
 
@@ -102,8 +106,26 @@ export default function CreateVaga({ navigation, route }) {
                 console.log('Salário negociável antigo: ' + vaga.salarioNegociavel);
                 console.log('Salário negociável novo: ' + salarioNegociavel);
             }
-            // Redireciona para a tela de perfil
-            navigation.navigate('ProfileVagas');
+
+            const job = {
+                title: nomeVaga,
+                description: descricaoVaga,
+                type: tipoVaga,
+                location: localizacaoVaga,
+                requirements: requisitosObrigatorios,
+                optionals: requisitosDesejaveis,
+                categories: areas,
+                benefits: beneficios,
+                payment: salarioVaga,
+                isNegotiable: salarioNegociavel,
+            }
+
+            jobService.saveJob(job)
+                .then(console.log)
+                .catch(console.error)
+                .finally(() => {
+                    navigation.navigate('ProfileVagas');
+                });
         }
 
     }

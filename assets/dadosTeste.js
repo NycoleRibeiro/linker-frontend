@@ -81,19 +81,31 @@ export const empresas = [
 export const desenvolvedores = [
     {
         id: 1,
-        nome: 'Nycole Ribeiro',
-        bio: "If I don't have the skill, give me a few days",
-        imagens: ["https://github.com/NycoleRibeiro.png"],
+        nome: 'Loading...',
+        bio: "Loading...",
+
+        photos: [""],
+        imagens: ["https://www.pixelpink.com.br/wp-content/uploads/2019/03/Nova-Imagem-13.png"],
+
+        birth: "",
         nascimento: {dia: '19', mes: 'Julho', ano: '1999'},
-        localizacao: 'Rio Grande, RS',
+
+        location: 'loading...',
+        localizacao: 'São Paulo, SP',
+
+        education: 'loading...',
         formacao: 'Sistemas de Informação | FURG',
-        telefone: '+5553991147808',
-        email: 'rpnyck@gmail.com',
-        linkedin: 'https://www.linkedin.com/in/nycoleribeiro/',
-        github: 'https://github.com/NycoleRibeiro',
-        hardSkills: ['HTML', 'CSS', 'JavaScript', 'React Native', 'PHP', 'UI e UX Design', 'Python', 'Inglês', 'MySQL'],
-        softSkills: ['Aprendizado Rápido', 'Pensamento Lógico e Criativo', 'Mente Aberta e Versátil', 'Capacidade de Planejamento', 'Organização Pessoal e Profissional'],
-        experiencia: '• Designer Gráfico | Petrova Gráfica Rápida',
+
+        phone: 'loading...',
+        email: '',
+        linkedin: '',
+        github: '',
+
+        hardSkills: [],
+        softSkills: [],
+        experiencia: '',
+        experience: '',
+
         certificacoes: [
             {title: 'UX/UI Design',
             image: 'https://marketplace.canva.com/EAE52XadGp0/1/0/1600w/canva-certificado-de-conclus%C3%A3o-de-curso-livre-monocrom%C3%A1tico-UrLmdESIErE.jpg',

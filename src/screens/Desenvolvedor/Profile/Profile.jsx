@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { View,
         Text,
         ScrollView,
@@ -23,20 +23,24 @@ import OptionsModal from '../../../components/ProfileComponents/OptionsModal.jsx
 import SimpleInput from '../../../components/Input/SimpleInput.jsx';
 
 import { desenvolvedores } from '../../../../assets/dadosTeste.js'
+import UserService from '../../../service/UserService.js';
+
+const userService =  UserService.getInstance();
 
 //dados para teste, será substituido por dados do banco
-const dev = desenvolvedores[0];
+const defaultDev = desenvolvedores[0];
 
 //lista de botoes de contato
 const contactButtons = ["whatsapp", "email"]
-if (dev.linkedin !== "") {
-    contactButtons.push("linkedin")
-} if (dev.github !== "") {
-    contactButtons.push("github")
-}
+// if (dev.linkedin !== "") {
+//     contactButtons.push("linkedin")
+// } if (dev.github !== "") {
+//     contactButtons.push("github")
+// }
 
 export function Profile({navigation, route}) {
 
+    const [user, setUser] = useState(defaultDev);
     const [OptionsModalShown, setOptionsModalShown] = useState(false);
     const [certificateDetailsShown, setCertificateDetailsShown] = useState(false);
     const [selectedCertificate, setSelectedCertificate] = useState(null);
@@ -44,9 +48,17 @@ export function Profile({navigation, route}) {
     const [certificateImage, setCertificateImage] = useState('');
     const [certificateLink, setCertificateLink] = useState('');
 
+    useEffect(()=> {
+        userService.fromLocalStorage().then(user => {
+            setUser(user);
+        });
+    }, []);
+
     //dados para teste, será substituido por dados do banco
     if (route.params) {
         const dev = route.params.dev;
+        route.params = null;
+        setUser(dev);
     }
 
     //função para colocar a imagem no state
@@ -136,9 +148,6 @@ export function Profile({navigation, route}) {
         }
     }
 
-
-
-
     return (
         <View style={css.container}>
 
@@ -146,9 +155,9 @@ export function Profile({navigation, route}) {
             headerType='image'/>
 
             <HeaderInfo
-            profileImage={dev.imagens[0]}
-            profileName={dev.nome}
-            profileBio={dev.bio} />
+            profileImage={user.photos?.[0] || user.photo}
+            profileName={user.name}
+            profileBio={user.bio} />
 
             <ScrollView
             overScrollMode='never'
@@ -164,10 +173,10 @@ export function Profile({navigation, route}) {
             >
                 <ContactButtons
                 types={contactButtons}
-                phone={dev.telefone}
-                email={dev.email}
-                linkedin={dev.linkedin}
-                github={dev.github}/>
+                phone={user.phone}
+                email={user.email}
+                linkedin={user.linkedin}
+                github={user.github}/>
 
                 {/* Dados Nascimento, Local e Formação */}
                 <View style={{
@@ -181,7 +190,7 @@ export function Profile({navigation, route}) {
                         marginTop:30,}}>
                         <FontAwesome5 name="birthday-cake" size={20} color="#3f3f46" />
                         <Text style={{color:'#a1a1aa', marginLeft:15}}>
-                            {dev.nascimento.mes} de {dev.nascimento.ano}
+                            {user.birth}
                         </Text>
                     </View>
 
@@ -191,7 +200,7 @@ export function Profile({navigation, route}) {
                         marginTop:5,}}>
                         <Ionicons name="md-location-sharp" size={20} color="#3f3f46" />
                         <Text style={{color:'#a1a1aa', marginLeft:13}}>
-                            {dev.localizacao}
+                            {user.location}
                         </Text>
                     </View>
 
@@ -201,13 +210,13 @@ export function Profile({navigation, route}) {
                         marginTop:5,}}>
                         <Ionicons name="school" size={20} color="#3f3f46" />
                         <Text style={{color:'#a1a1aa', marginLeft:13}}>
-                            {dev.formacao}
+                            {user.education}
                         </Text>
                     </View>
                 </View>
 
                 {/* Hard Skills */}
-                {dev.hardSkills.length > 0 &&
+                {user.hardSkills?.length > 0 &&
                 <>
                 <Text style={css.title}>Hard Skills</Text>
                 <View style={{
@@ -217,7 +226,7 @@ export function Profile({navigation, route}) {
                 alignItems: "center",
                 justifyContent: "center",
                 }}>
-                    {dev.hardSkills.map((skill, index) => (
+                    {user.hardSkills.map((skill, index) => (
                         <View key={index} style={{
                         backgroundColor: "#27272a",
                         marginRight: 8,
@@ -238,7 +247,7 @@ export function Profile({navigation, route}) {
                 </>}
 
                 {/* Soft Skills */}
-                {dev.softSkills.length > 0 &&
+                {user.softSkills?.length > 0 &&
                 <>
                 <Text style={css.title}>Soft Skills</Text>
                 <View style={{
@@ -247,7 +256,7 @@ export function Profile({navigation, route}) {
                     alignSelf: "flex-start",
                     marginHorizontal: 20,
                 }}>
-                    {dev.softSkills.map((skill, index) => (
+                    {user.softSkills.map((skill, index) => (
                         <Text
                         key={index}
                         style={{
@@ -263,7 +272,7 @@ export function Profile({navigation, route}) {
                 </>}
 
                 {/* Experiência */}
-                {dev.experiencia != '' &&
+                {user.experience != '' &&
                 <>
                 <Text style={css.title}>Experiência</Text>
                 <Text style={{
@@ -275,18 +284,18 @@ export function Profile({navigation, route}) {
                     fontSize: RFPercentage(1.8),
                     fontFamily: 'Inter_400Regular'
                 }}>
-                    {dev.experiencia}
+                    {user.experience}
                 </Text>
                 </>}
 
                 {/* Certificações */}
-                {dev.certificacoes.length >= 0 &&
+                {user.certificacoes?.length >= 0 &&
                 <>
                 <Text style={css.title}>Certificações</Text>
 
                 {/* ScrollView Horizontal */}
                 <ScrollView horizontal={true}>
-                    {dev.certificacoes.map((cert, index) => (
+                    {user.certificacoes.map((cert, index) => (
                         <Certificate
                         key={index}
                         id={cert.id}
@@ -312,7 +321,7 @@ export function Profile({navigation, route}) {
             {/* Botão de editar */}
             <FloatButton
             buttonType='edit'
-            onPress={() => navigation.navigate('EditProfile', {dev: dev})}/>
+            onPress={() => navigation.navigate('EditProfile', {dev: user})}/>
 
             {/* Botões de opção do certificado */}
             {OptionsModalShown && (
@@ -545,7 +554,6 @@ export function Profile({navigation, route}) {
                 </View>
             </>
             }
-
         </View>
     );
 }

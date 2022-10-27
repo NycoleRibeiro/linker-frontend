@@ -15,23 +15,27 @@ import AppHeader from '../../../components/AppHeader.jsx';
 import SimpleInput from '../../../components/Input/SimpleInput.jsx';
 import TagsInput from '../../../components/Input/TagsInput.jsx';
 
+import UserService from '../../../service/UserService.js';
+
+const userService = UserService.getInstance();
+
 export default function EditProfile({ navigation, route }) {
 
     //dados para teste, será substituido por dados do banco
     const dev = route.params.dev;
 
     //variaveis que podem ser editadas
-    const [images, setImages] = useState(dev.imagens);
-    const [nome, setNome] = useState(dev.nome);
+    const [images, setImages] = useState(dev.photos || [dev.photo]);
+    const [nome, setNome] = useState(dev.name);
     const [description, setDescription] = useState(dev.bio);
-    const [telefone, setTelefone] = useState(dev.telefone);
-    const [localizacao, setLocalizacao] = useState(dev.localizacao);
+    const [telefone, setTelefone] = useState(dev.phone);
+    const [localizacao, setLocalizacao] = useState(dev.location);
     const [linkedin, setLinkedin] = useState(dev.linkedin);
     const [github, setGithub] = useState(dev.github);
-    const [formacao, setFormacao] = useState(dev.formacao);
-    const [experiencia, setExperiencia] = useState(dev.experiencia);
-    const [hardSkills, setHardSkills] = useState(dev.hardSkills);
-    const [softSkills, setSoftSkills] = useState(dev.softSkills);
+    const [formacao, setFormacao] = useState(dev.education);
+    const [experiencia, setExperiencia] = useState(dev.experience);
+    const [hardSkills, setHardSkills] = useState(dev.hardSkills || "");
+    const [softSkills, setSoftSkills] = useState(dev.softSkills || "");
 
     //função para colocar a imagem no state
     const pickImage = async () => {
@@ -42,8 +46,6 @@ export default function EditProfile({ navigation, route }) {
             aspect: [3, 5],
             quality: 1,
         });
-
-        console.log("Imagem cadastrada");
 
         if (!result.cancelled) {
             // Se não cancelado, adiciona a imagem no array
@@ -60,7 +62,6 @@ export default function EditProfile({ navigation, route }) {
             );
         } else {
             // Atualiza o perfil
-            console.log("Perfil atualizado");
             if (images.length != 0) {
                 dev.imagens = images;
             }
@@ -95,22 +96,36 @@ export default function EditProfile({ navigation, route }) {
                 dev.softSkills = softSkills;
             }
 
+            userService.updateUser({
+                photos: images.filter(Boolean),
+                name: nome,
+                about: description,
+                phone: telefone,
+                location: localizacao,
+                linkedin,
+                github,
+                education: formacao,
+                experience: experiencia,
+                hardSkills,
+                softSkills,
+             });
 
-            // Redireciona para a tela de perfil
-            console.log("Redirecionando para a tela de perfil");
-            navigation.navigate('Profile', { dev: dev });
+            navigation.navigate('Profile', { dev: {
+                ...dev,
+                name: dev.nome,
+                photos: dev.imagens,
+                location: dev.localizacao,
+                phone: dev.telefone,
+            } });
         }
     }
 
     return (
         <View style={cssEditProfile.container}>
-
             <AppHeader
             headerType='text'
             headerText='Editar Perfil'/>
-
             <ScrollView>
-
                 {/* Imagens */}
                 <View style={cssEditProfile.containerFotos}>
                     {/* Container da Foto 1 */}
@@ -135,7 +150,6 @@ export default function EditProfile({ navigation, route }) {
                         onPress={() => {
                             // Caso a foto 1 seja removida e existir uma foto 2, a foto 2 passa para a primeira posição
                             images[1] ? setImages([images[1]]) : setImages([]);
-                            console.log("Imagem deletada");
                         }}>
                             <Image
                             source={require("../../../../assets/img/buttons/buttonDel.png")}
@@ -166,7 +180,6 @@ export default function EditProfile({ navigation, route }) {
                         onPress={() => {
                             // Caso a foto 2 seja removida, o array recebe apenas a primeira foto
                             setImages([images[0]]);
-                            console.log("Imagem deletada");
                         }}>
                             <Image
                             source={require("../../../../assets/img/buttons/buttonDel.png")}

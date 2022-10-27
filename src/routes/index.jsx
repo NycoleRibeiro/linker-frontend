@@ -3,7 +3,7 @@ import { AppEmpresaRoutes } from './appEmpresa.routes';
 import { AppDesenvolvedorRoutes } from './appDesenvolvedor.routes';
 
 const isSignedIn = true;
-const accountType = 'dev';
+const accountType = 'empresa';
 
 export function Routes() {
     return (

@@ -1,17 +1,21 @@
-import React, { useState } from 'react';
-import { View,
+import React, { useEffect, useState } from 'react';
+import {
+    View,
     Text,
     TextInput,
-    ScrollView,}
-from 'react-native';
+    ScrollView,
+}
+    from 'react-native';
 import { StyleSheet } from "react-native";
 
 import { css } from './Css.js';
 import ContinuarButton from '../../../components/Button/ContinuarButton';
 import ProgressBar from '../../../components/Input/ProgressBar';
 import ErrorMessage from '../../../components/ErrorMessage';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-function Nome({navigation}) {
+
+function Nome({ navigation }) {
     const [nome, setNome] = React.useState("");
     const [errorMessage, setErrorMessage] = useState(false);
 
@@ -27,14 +31,21 @@ function Nome({navigation}) {
             // Se o usuário não preencheu o campo, mostra o ErrorMessage
             setErrorMessage(true);
         }
-
     }
+
+    useEffect(() => {
+        AsyncStorage.getItem("user").then(user => JSON.parse(user))
+            .then(user => {
+                setNome(user.name)
+            });
+    }, []);
+
 
     return (
         <View
-        style={css.container}
-        enabled={true}>
-            <ProgressBar percent="20%"/>
+            style={css.container}
+            enabled={true}>
+            <ProgressBar percent="20%" />
             <ScrollView>
                 <Text style={css.h1}>
                     Meu {'\n'}
@@ -49,12 +60,12 @@ function Nome({navigation}) {
                     keyboardType="default"
                     autoCapitalize="words"
                     maxLength={30}
+                    defaultValue={nome}
                     onChangeText={(text) => {
                         setNome(text);
                     }}
                 />
             </ScrollView>
-
             {/* Error message, só aparece se o usuário tentar continuar sem os campos obrigatórios */}
             {errorMessage &&
             <ErrorMessage message="Digite seu nome para continuar"/>}
@@ -63,8 +74,6 @@ function Nome({navigation}) {
         </View>
     );
 }
-
-export default Nome;
 
 const style = StyleSheet.create({
     input: {
@@ -81,5 +90,8 @@ const style = StyleSheet.create({
         fontFamily: 'Inter_400Regular',
         fontSize: 20,
         color: '#f4f4f5',
-      },
+    },
 });
+
+
+export default Nome;

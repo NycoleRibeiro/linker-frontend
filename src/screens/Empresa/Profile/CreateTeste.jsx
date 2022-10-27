@@ -14,6 +14,10 @@ import AppHeader from '../../../components/AppHeader.jsx';
 import SimpleInput from '../../../components/Input/SimpleInput.jsx';
 import ContinuarButton from '../../../components/Button/ContinuarButton.jsx';
 
+import JobService from '../../../service/JobService';
+
+const jobService = JobService.getInstance();
+
 export default function CreateTeste({ navigation, route }) {
     const [perguntas, setPerguntas] = useState(['']);
     const DadosVaga = route.params;
@@ -34,8 +38,28 @@ export default function CreateTeste({ navigation, route }) {
             console.log(DadosVaga);
             console.log(perguntas);
 
-            // Redirecionar de volta para o perfil da empresa
-            navigation.navigate('ProfileVagas');
+
+            const job = {
+                title: DadosVaga.nomeVaga,
+                areas: DadosVaga.areas,
+                benefints: DadosVaga.beneficios,
+                description: DadosVaga.descricaoVaga,
+                location: DadosVaga.localizacaoVaga,
+                requirements: DadosVaga.requisitosDesejaveis,
+                optionals: DadosVaga.requisitosObrigatorios,
+                isNegotiable: DadosVaga.salarioNegociavel,
+                payment: DadosVaga.salarioVaga,
+                type: DadosVaga.tipoVaga,
+            }
+
+            jobService.saveJob(job)
+                .then(console.log)
+                .catch(console.error)
+                .finally(function () {
+                    // Redirecionar de volta para o perfil da empresa
+                    navigation.navigate('ProfileVagas');
+                });
+
         }
 
     }
