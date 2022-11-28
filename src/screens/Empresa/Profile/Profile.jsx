@@ -18,7 +18,7 @@ import { empresas } from '../../../../assets/dadosTeste.js'
 const empresa = empresas[0];
 
 //lista de botoes de contato
-const contactButtons = ["phone", "email"]
+const contactButtons = ["whatsapp", "email"]
 if (empresa.site !== "") {
     contactButtons.push("site")
 }

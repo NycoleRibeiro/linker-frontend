@@ -94,7 +94,7 @@ export function Chat() {
                         Contatos de: {empresa.nome}
                     </Text>
                     <ContactButtons
-                    types={["phone", "email"]}
+                    types={["whatsapp", "email"]}
                     phone={empresa.telefone}
                     email={empresa.email}/>
                 </View>
