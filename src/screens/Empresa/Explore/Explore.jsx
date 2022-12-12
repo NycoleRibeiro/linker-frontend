@@ -55,7 +55,7 @@ export function Explore() {
                             onPress={() => { }}
                             style={{
                                 width: "48%",
-                                height: 150,
+                                height: 100,
                                 backgroundColor: '#000',
                                 marginBottom: 15,
                                 borderRadius: 15,
@@ -63,10 +63,13 @@ export function Explore() {
                             }}>
                                 <LinearGradient
                                 style={css.categoria}
-                                colors={['#FE3E73', '#FB6D59']}
-                                start={{x:0,y:1}}
-                                end={{x:1,y:0}}
-                                locations={[.5,0.8]}
+                                // versão 1 (Preto)
+                                colors={['#000', '#18181b', '#000']}
+                                // versão 2 (Cores Linker)
+                                //colors={['#FE3E73', '#FB6D59']}
+                                //start={{x:0,y:1}}
+                                //end={{x:1,y:0}}
+                                //locations={[.5,0.8]}
                                 >
                                     <Text style={css.categoriaName}>
                                         {categoria}

@@ -42,14 +42,14 @@ const css = StyleSheet.create({
         zIndex: -1,
     },
     categoriaName: {
-        width: "100%",
-        height: 60,
+        width: "90%",
+        height: "100%",
         textAlign: "center",
         textAlignVertical: "center",
-        fontSize: RFPercentage(2),
-        fontFamily: 'Inter_400Regular',
+        fontSize: RFPercentage(2.5),
+        fontFamily: 'Inter_700Bold',
         color: "#fff",
-        backgroundColor: "rgba(24, 24, 27, 0.8)",
+        //backgroundColor: "rgba(24, 24, 27, 0.8)",
     },
 });
 
