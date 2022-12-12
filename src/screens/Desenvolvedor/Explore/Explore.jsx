@@ -10,15 +10,15 @@ import { css } from './Css.js';
 import { LinearGradient } from 'expo-linear-gradient';
 
 import AppHeader from '../../../components/AppHeader.jsx';
-import VagaView from '../../../components/Vagas/VagaView'
+import FilteredVagas from '../../../components/Vagas/FilteredVagas'
 
-// Dados teste... remover após implementar banco de dados
-import { empresas } from '../../../../assets/dadosTeste.js'
-import { desenvolvedores } from '../../../../assets/dadosTeste.js'
 
 export function Explore() {
 
     const interesses = ['Front-end', 'Desenvolvimento Web', 'Gestão de Projetos', 'Fullstack', 'Big Data', 'Ciência de Dados', 'Banco de Dados', 'Back-end', 'Business Intelligence', 'Mobile', 'Cloud Computing', 'Segurança da Informação']
+
+    const [currentCategory, setCurrentCategory] = useState(0);
+    const [showVagas, setShowVagas] = useState(false);
 
     return (
         <View style={css.container}>
@@ -52,7 +52,10 @@ export function Explore() {
                             key={index}
                             activeOpacity={0.8}
                             underlayColor="#18181f"
-                            onPress={() => { }}
+                            onPress={() => {
+                                setCurrentCategory(categoria);
+                                setShowVagas(true);
+                            }}
                             style={{
                                 width: "48%",
                                 height: 100,
@@ -64,7 +67,7 @@ export function Explore() {
                                 <LinearGradient
                                 style={css.categoria}
                                 // versão 1 (Preto)
-                                colors={['#000', '#18181b', '#000']}
+                                colors={['#0b0b0b', '#18181b', '#0b0b0b']}
                                 // versão 2 (Cores Linker)
                                 //colors={['#FE3E73', '#FB6D59']}
                                 //start={{x:0,y:1}}
@@ -82,6 +85,48 @@ export function Explore() {
 
                 </View>
             </ScrollView>
+
+            {showVagas &&
+            <View
+            style={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                width: '100%',
+                height: '100%',
+                backgroundColor: '#18181b',
+                zIndex: 1,
+            }}>
+                {/*Botão de Voltar / Fechar */}
+                <TouchableHighlight
+                activeOpacity={0.8}
+                underlayColor="#18181f"
+                onPress={() => setShowVagas(false)}
+                style={{
+                    position: 'absolute',
+                    zIndex: 2,
+                    right: 10,
+                    top: 40,
+                    backgroundColor: 'green',
+                    borderRadius: 15,
+                }}>
+                    <Text
+                    style={{
+                        color: '#fff',
+                        fontSize: 20,
+                        padding: 10,
+                        }}>
+                            VOLTAR
+                    </Text>
+                </TouchableHighlight>
+
+                {/* Tela de Vagas Filtradas */}
+                <FilteredVagas
+                filtro={currentCategory}
+                />
+            </View>
+            }
+
         </View>
     );
 }
