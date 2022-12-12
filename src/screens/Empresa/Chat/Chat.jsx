@@ -32,6 +32,7 @@ export function Chat() {
                 {chats.map((dev, index) => {
                     return (
                         <TouchableHighlight
+                        key={index}
                         activeOpacity={0.8}
                         underlayColor="#18181f"
                         onPress={() => {

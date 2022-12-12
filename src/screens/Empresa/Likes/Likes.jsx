@@ -30,6 +30,7 @@ export function Likes() {
                     {desenvolvedores.map((dev, index) => {
                         return (
                             <TouchableHighlight
+                            key={index}
                             activeOpacity={0.8}
                             underlayColor="#18181f"
                             onPress={() => {setSelectedDev(dev); setShowContact(true);}}
