@@ -10,21 +10,22 @@ import { css } from './Css.js';
 import { LinearGradient } from 'expo-linear-gradient';
 
 import AppHeader from '../../../components/AppHeader.jsx';
-import VagaView from '../../../components/Vagas/VagaView'
+import FilteredDevs from '../../../components/ProfileComponents/FilteredDevs'
 
-// Dados teste... remover após implementar banco de dados
-import { empresas } from '../../../../assets/dadosTeste.js'
-import { desenvolvedores } from '../../../../assets/dadosTeste.js'
 
 export function Explore() {
 
     const interesses = ['Front-end', 'Desenvolvimento Web', 'Gestão de Projetos', 'Fullstack', 'Big Data', 'Ciência de Dados', 'Banco de Dados', 'Back-end', 'Business Intelligence', 'Mobile', 'Cloud Computing', 'Segurança da Informação']
+
+    const [currentCategory, setCurrentCategory] = useState(0);
+    const [showDevs, setShowDevs] = useState(false);
 
     return (
         <View style={css.container}>
             <AppHeader
             headerType='image'/>
 
+            {/* Banner divulgando que a empresa pode fazer um anuncio ali, ao clicar redireciona para o email */}
             <TouchableHighlight
             style={{
                 width: '90%',
@@ -44,6 +45,7 @@ export function Explore() {
                 }}/>
             </TouchableHighlight>
 
+            {/* Scroll de botões/lista de interesses */}
             <ScrollView style={css.scroll}>
                 <View style={css.categorias}>
                     {interesses.map((categoria, index) => {
@@ -52,7 +54,10 @@ export function Explore() {
                             key={index}
                             activeOpacity={0.8}
                             underlayColor="#18181f"
-                            onPress={() => { }}
+                            onPress={() => {
+                                setCurrentCategory(categoria);
+                                setShowDevs(true);
+                            }}
                             style={{
                                 width: "48%",
                                 height: 100,
@@ -82,6 +87,49 @@ export function Explore() {
 
                 </View>
             </ScrollView>
+
+            {/* Mostra os desenvolvedores que tem interesse na categoria selecionada */}
+            {showDevs &&
+            <View
+            style={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                width: '100%',
+                height: '100%',
+                backgroundColor: '#18181b',
+                zIndex: 1,
+            }}>
+                {/*Botão de Voltar / Fechar */}
+                <TouchableHighlight
+                activeOpacity={0.8}
+                underlayColor="#18181f"
+                onPress={() => setShowDevs(false)}
+                style={{
+                    position: 'absolute',
+                    zIndex: 2,
+                    right: 10,
+                    top: 40,
+                    backgroundColor: 'green',
+                    borderRadius: 15,
+                }}>
+                    <Text
+                    style={{
+                        color: '#fff',
+                        fontSize: 20,
+                        padding: 10,
+                        }}>
+                            VOLTAR
+                    </Text>
+                </TouchableHighlight>
+
+                {/* Tela de Devs Filtradas */}
+                <FilteredDevs
+                filtro={currentCategory}
+                />
+            </View>
+            }
+
         </View>
     );
 }

@@ -19,7 +19,7 @@ export function Home() {
     const [currentDev, setCurrentDev] = useState(desenvolvedores[0])
 
     const returnDev = () => {
-        // ao clicar no botão (return), retorna para a vaga anterior
+        // ao clicar no botão (return), retorna para o dev anterior
         let index = devsRow.indexOf(currentDev);
         if (index > 0) {
             setCurrentDev(devsRow[index - 1]);
@@ -27,7 +27,7 @@ export function Home() {
     }
 
     const passDev = () => {
-        // ao clicar no botão (x) passa para a próxima vaga
+        // ao clicar no botão (x) passa para o próximo dev
         let index = devsRow.indexOf(currentDev);
         if (index < devsRow.length - 1) {
             setCurrentDev(devsRow[index + 1]);
@@ -35,8 +35,8 @@ export function Home() {
     }
 
     const okDev = () => {
-        // o teste da vaga vai ser enviado pra página de likes
-        // tela inicial passa para a proxima vaga
+        // o dev vai ser enviado pra página de contatos/chat
+        // tela inicial passa para o proximo dev
         passDev()
     }
 
