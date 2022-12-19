@@ -150,7 +150,7 @@ export const desenvolvedores = [
             image: 'https://uploads-ssl.webflow.com/61cc54ab99085be9e38d2e16/627e5de66574490ac6c18f3e_Modelo-Certificado-1.jpg',
             link: 'https://marketplace.canva.com/EAE52XadGp0/1/0/1600w/canva-certificado-de-conclus%C3%A3o-de-curso-livre-monocrom%C3%A1tico-UrLmdESIErE.jpg',
             id:14},],
-        interesses: ['Front-end', 'Desenvolvimento Web']
+        interesses: ['Gestão de Projetos', 'Desenvolvimento Web', 'Front-end']
     },
     {
         id: 3,
@@ -184,6 +184,6 @@ export const desenvolvedores = [
             image: 'https://uploads-ssl.webflow.com/61cc54ab99085be9e38d2e16/627e5de66574490ac6c18f3e_Modelo-Certificado-1.jpg',
             link: 'https://marketplace.canva.com/EAE52XadGp0/1/0/1600w/canva-certificado-de-conclus%C3%A3o-de-curso-livre-monocrom%C3%A1tico-UrLmdESIErE.jpg',
             id:14},],
-        interesses: ['Front-end', 'Desenvolvimento Web']
+        interesses: ['Back-end', 'Fullstack', 'Banco de Dados']
     },
 ]
