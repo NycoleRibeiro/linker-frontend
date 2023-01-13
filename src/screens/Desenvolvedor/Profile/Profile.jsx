@@ -4,7 +4,8 @@ import { View,
         ScrollView,
         Alert,
         Image,
-        TouchableHighlight
+        TouchableHighlight,
+        Linking,
     }
 from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
@@ -306,7 +307,20 @@ export function Profile({navigation, route}) {
 
 
 
-
+            {/*Botão de Sugestões/Dúvidas/Denuncias */}
+            <TouchableHighlight
+            activeOpacity={0.8}
+            underlayColor="#18181f"
+            onPress={() => {Linking.openURL(`mailto:suportelinker@gmail.com?subject=Digite aqui uma das opções (Sugestão, Dúvida ou Denúncia)&body=Digite aqui sua sugestão, dúvida ou denúncia. Em caso de denúncias, envie o print do problema em anexo. Retornaremos o mais breve possível.`)}}
+            style={{
+                position: 'absolute',
+                zIndex: 2,
+                right: 20,
+                top: 40,
+                borderRadius: 15,
+            }}>
+                <Ionicons name="information-circle-outline" size={24} color="white" />
+            </TouchableHighlight>
 
 
             {/* Botão de editar */}
